@@ -14,7 +14,8 @@ class Database
          
          return $connection;
       } catch (Exception $e) {
-         return ('Erreur de connection :' . $e->getMessage());
+         die('Erreur de connection :' . $e->getMessage());
       }
    }
+   
 }
