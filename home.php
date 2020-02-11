@@ -22,8 +22,8 @@ require 'Chapter.php';
       while ($chapter = $chapters->fetch()) {
       ?>
          <div>
-            <h2><?= htmlspecialchars($chapter->chapter_title); ?></h2>
-            <p><?= htmlspecialchars($chapter->chapter_content); ?></p>
+            <h2><a href="single.php?chapterId=<?= htmlspecialchars($chapter->id); ?>"><?= htmlspecialchars($chapter->chapter_title); ?></a></h2>
+            <p><?= $chapter->chapter_content; ?></p>
             <p><?= htmlspecialchars($chapter->user_id); ?></p>
             <p>Créé le : <?= htmlspecialchars($chapter->chapter_date); ?></p>
             <p>Modifié le : <?= htmlspecialchars($chapter->chapter_modified); ?></p>
