@@ -22,16 +22,16 @@ require 'Chapter.php';
       while ($chapter = $chapters->fetch()) {
       ?>
          <div>
-            <h2><?= htmlspecialchars($chapter['chapter_title']); ?></h2>
-            <p><?= htmlspecialchars($chapter['chapter_content']); ?></p>
-            <p><?= htmlspecialchars($chapter['chapter_author']); ?></p>
-            <p>Créé le : <?= htmlspecialchars($chapter['chapter_date']); ?></p>
-            <p>Modifié le : <?= htmlspecialchars($chapter['chapter_modified']); ?></p>
+            <h2><?= htmlspecialchars($chapter->chapter_title); ?></h2>
+            <p><?= htmlspecialchars($chapter->chapter_content); ?></p>
+            <p><?= htmlspecialchars($chapter->user_id); ?></p>
+            <p>Créé le : <?= htmlspecialchars($chapter->chapter_date); ?></p>
+            <p>Modifié le : <?= htmlspecialchars($chapter->chapter_modified); ?></p>
          </div>
          <br>
       <?php
       }
-      $articles->closeCursor();
+      $chapters->closeCursor();
       ?>
 
    </div>
