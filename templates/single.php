@@ -1,7 +1,10 @@
 <?php
-require 'Database.php';
-require 'Chapter.php';
-require 'Comment.php';
+require '../config/Autoloader.php';
+
+\App\config\Autoloader::register();
+
+use App\src\DAO\ChapterDAO;
+use App\src\DAO\CommentDAO;
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +20,7 @@ require 'Comment.php';
       <h1>Mon blog</h1>
       <p>En construction</p>
       <?php
-      $chapter = new Chapter();
+      $chapter = new ChapterDAO();
       $chapters = $chapter->getChapter($_GET['chapterId']);
       $chapter = $chapters->fetch()
       ?>
@@ -37,7 +40,7 @@ require 'Comment.php';
       <div id="comments" class="text-left" style="margin-left: 50px">
          <h3>Commentaires</h3>
          <?php
-         $comment = new Comment();
+         $comment = new CommentDAO();
          $comments = $comment->getCommentsFromChapter($_GET['chapterId']);
          while ($comment = $comments->fetch()) {
          ?>

@@ -1,6 +1,10 @@
 <?php
-require 'Database.php';
-require 'Chapter.php';
+require '../config/Autoloader.php';
+
+\App\config\Autoloader::register();
+
+use App\src\DAO\ChapterDAO;
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +21,7 @@ require 'Chapter.php';
       <p>En construction</p>
 
       <?php
-      $chapter = new Chapter();
+      $chapter = new ChapterDAO();
       $chapters = $chapter->getChapters();
       while ($chapter = $chapters->fetch()) {
       ?>

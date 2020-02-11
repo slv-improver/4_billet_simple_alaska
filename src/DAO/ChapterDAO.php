@@ -1,6 +1,8 @@
 <?php
 
-class Chapter extends Database
+namespace App\src\DAO;
+
+class ChapterDAO extends DAO
 {
    public function getChapters()
    {

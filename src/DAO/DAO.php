@@ -1,6 +1,11 @@
 <?php
 
-class Database
+namespace App\src\DAO;
+
+use PDO;
+use Exception;
+
+class DAO
 {
    const HOST = 'localhost';
    const DBNAME = 'billet_alaska';
