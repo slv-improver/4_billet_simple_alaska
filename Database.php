@@ -6,16 +6,61 @@ class Database
    const DBNAME = 'billet_alaska';
    const USER = 'algor';
    const PASSWD = '4160';
+
+   private $connection;
+
    public function getConnection()
    {
       try {
-         $connection = new PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME.';charset=utf8', self::USER, self::PASSWD);
-         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         
-         return $connection;
+         $this->connection = new PDO('mysql:host=' . self::HOST . ';dbname=' . self::DBNAME . ';charset=utf8', self::USER, self::PASSWD);
+         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+         return $this->connection;
       } catch (Exception $e) {
          die('Erreur de connection :' . $e->getMessage());
       }
    }
-   
+
+   private function checkConnection()
+   {
+      if ($this->connection === null) {
+         return $this->getConnection();
+      }
+      return $this->connection;
+   }
+
+   protected function createQuery($sql, $parameters = null)
+   {
+      if ($parameters) {
+         $result =  $this->checkConnection()->prepare($sql);
+         $result->execute($parameters);
+         return $result;
+      }
+      $result =  $this->checkConnection()->query($sql);
+      return $result;
+   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
