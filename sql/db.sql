@@ -61,7 +61,6 @@ CREATE TABLE IF NOT EXISTS `billet_alaska`.`comment` (
   `comment_date` DATETIME NOT NULL DEFAULT NOW(),
   `comment_approved` VARCHAR(20) NOT NULL,
   `comment_parent` INT UNSIGNED NOT NULL DEFAULT 0,
-  `chapter_user_id` INT UNSIGNED NOT NULL,
   `user_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`, `chapter_id`, `user_id`),
   INDEX `fk_comment_user_idx` (`user_id` ASC) VISIBLE,
