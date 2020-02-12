@@ -36,7 +36,10 @@ class ChapterDAO extends DAO
    {
       $sql = 'SELECT id, user_id, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified 
          FROM chapter WHERE id = ?';
-      return $this->createQuery($sql, [$chapterId]);
+      $result = $this->createQuery($sql, [$chapterId]);
+      $chapter= $result->fetch();
+      $result->closeCursor();
+      return $this->buildObject($chapter);
    }
 
    public function getLastChapter()

@@ -15,6 +15,7 @@ class FrontController
       $this->chapterDAO = new ChapterDAO();
       $this->commentDAO = new CommentDAO();
    }
+
    public function home()
    {
       $chapters = $this->chapterDAO->getChapters();
@@ -23,7 +24,7 @@ class FrontController
 
    public function chapter($chapterId)
    {
-      $chapters = $this->chapterDAO->getChapter($chapterId);
+      $chapter = $this->chapterDAO->getChapter($chapterId);
       $comments = $this->commentDAO->getCommentsFromChapter($chapterId);
       require '../templates/single.php';
    }
