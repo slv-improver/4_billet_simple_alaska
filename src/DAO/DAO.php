@@ -7,17 +7,13 @@ use Exception;
 
 class DAO
 {
-   const HOST = 'localhost';
-   const DBNAME = 'billet_alaska';
-   const USER = 'algor';
-   const PASSWD = '4160';
 
    private $connection;
 
    public function getConnection()
    {
       try {
-         $this->connection = new PDO('mysql:host=' . self::HOST . ';dbname=' . self::DBNAME . ';charset=utf8', self::USER, self::PASSWD);
+         $this->connection = new PDO(DB_HOST , DB_USER, DB_PASSWD);
          $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
          return $this->connection;
@@ -47,27 +43,3 @@ class DAO
       return $result;
    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
