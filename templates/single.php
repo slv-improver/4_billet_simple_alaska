@@ -1,10 +1,3 @@
-<?php
-
-use App\src\DAO\ChapterDAO;
-use App\src\DAO\CommentDAO;
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,8 +11,7 @@ use App\src\DAO\CommentDAO;
       <h1>Mon blog</h1>
       <p>En construction</p>
       <?php
-      $chapter = new ChapterDAO();
-      $chapters = $chapter->getChapter($_GET['chapterId']);
+
       $chapter = $chapters->fetch()
       ?>
       <div>
@@ -38,8 +30,7 @@ use App\src\DAO\CommentDAO;
       <div id="comments" class="text-left" style="margin-left: 50px">
          <h3>Commentaires</h3>
          <?php
-         $comment = new CommentDAO();
-         $comments = $comment->getCommentsFromChapter($_GET['chapterId']);
+         
          while ($comment = $comments->fetch()) {
          ?>
             <h4><?= htmlspecialchars($comment->comment_author); ?></h4>

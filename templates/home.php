@@ -1,9 +1,3 @@
-<?php
-
-use App\src\DAO\ChapterDAO;
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,8 +12,7 @@ use App\src\DAO\ChapterDAO;
       <p>En construction</p>
 
       <?php
-      $chapter = new ChapterDAO();
-      $chapters = $chapter->getChapters();
+      
       while ($chapter = $chapters->fetch()) {
       ?>
          <div>
