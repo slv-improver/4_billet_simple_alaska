@@ -12,22 +12,19 @@
       <p>En construction</p>
 
       <?php
-      
-      while ($chapter = $chapters->fetch()) {
+      foreach ($chapters as $chapter) {
       ?>
          <div>
-            <h2><a href="../public/index.php?route=chapter&amp;chapterId=<?= htmlspecialchars($chapter->id); ?>"><?= htmlspecialchars($chapter->chapter_title); ?></a></h2>
-            <p><?= $chapter->chapter_content; ?></p>
-            <p><?= htmlspecialchars($chapter->user_id); ?></p>
-            <p>Créé le : <?= htmlspecialchars($chapter->chapter_date); ?></p>
-            <p>Modifié le : <?= htmlspecialchars($chapter->chapter_modified); ?></p>
+            <h2><a href="../public/index.php?route=chapter&chapterId=<?= htmlspecialchars($chapter->getId()); ?>"><?= htmlspecialchars($chapter->getTitle()); ?></a></h2>
+            <p><?= $chapter->getContent(); ?></p>
+            <p><?= htmlspecialchars($chapter->getAuthor()); ?></p>
+            <p>Créé le : <?= htmlspecialchars($chapter->getDate()); ?></p>
+            <p>Modifié le : <?= htmlspecialchars($chapter->getDateModif()); ?></p>
          </div>
          <br>
       <?php
       }
-      $chapters->closeCursor();
       ?>
-
    </div>
 </body>
 

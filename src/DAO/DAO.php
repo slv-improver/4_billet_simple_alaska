@@ -39,7 +39,6 @@ class DAO
          return $result;
       }
       $result =  $this->checkConnection()->query($sql);
-      $result->setFetchMode(PDO::FETCH_CLASS, static::class);
       return $result;
    }
 }
