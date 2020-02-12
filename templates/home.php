@@ -1,5 +1,4 @@
 <?php
-require '../vendor/autoload.php';
 
 use App\src\DAO\ChapterDAO;
 
@@ -24,7 +23,7 @@ use App\src\DAO\ChapterDAO;
       while ($chapter = $chapters->fetch()) {
       ?>
          <div>
-            <h2><a href="single.php?chapterId=<?= htmlspecialchars($chapter->id); ?>"><?= htmlspecialchars($chapter->chapter_title); ?></a></h2>
+            <h2><a href="../public/index.php?route=chapter&amp;chapterId=<?= htmlspecialchars($chapter->id); ?>"><?= htmlspecialchars($chapter->chapter_title); ?></a></h2>
             <p><?= $chapter->chapter_content; ?></p>
             <p><?= htmlspecialchars($chapter->user_id); ?></p>
             <p>Créé le : <?= htmlspecialchars($chapter->chapter_date); ?></p>
