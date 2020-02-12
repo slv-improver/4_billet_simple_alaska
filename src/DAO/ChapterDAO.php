@@ -12,7 +12,7 @@ class ChapterDAO extends DAO
       $chapter->setId($row['id']);
       $chapter->setTitle($row['chapter_title']);
       $chapter->setContent($row['chapter_content']);
-      $chapter->setAuthor($row['user_id']);
+      $chapter->setAuthor($row['display_name']);
       $chapter->setDate($row['chapter_date']);
       $chapter->setDateModif($row['chapter_modified']);
       return $chapter;
@@ -20,8 +20,8 @@ class ChapterDAO extends DAO
 
    public function getChapters()
    {
-      $sql = 'SELECT id, user_id, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified 
-         FROM chapter ORDER BY chapter_modified DESC';
+      $sql = 'SELECT ch.id, user_id, u.id u_id, display_name, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified 
+         FROM chapter ch JOIN user u ON user_id = u.id ORDER BY chapter_modified DESC';
       $result = $this->createQuery($sql);
       $chapters = [];
       foreach ($result as $row) {
@@ -34,8 +34,8 @@ class ChapterDAO extends DAO
    
    public function getChapter($chapterId)
    {
-      $sql = 'SELECT id, user_id, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified 
-         FROM chapter WHERE id = ?';
+      $sql = 'SELECT ch.id, user_id, u.id u_id, display_name, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified 
+      FROM chapter ch JOIN user u ON user_id = u.id WHERE ch.id = ?';
       $result = $this->createQuery($sql, [$chapterId]);
       $chapter= $result->fetch();
       $result->closeCursor();
@@ -44,8 +44,8 @@ class ChapterDAO extends DAO
 
    public function getLastChapter()
    {
-      $sql = 'SELECT id, user_id, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified 
-         FROM chapter WHERE MAX(chapter_modified) AND chapter_status = "publish"';
+      $sql = 'SELECT ch.id, user_id, u.id u_id, display_name, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified
+         FROM chapter ch JOIN user u ON user_id = u.id WHERE chapter_status = "publish" ORDER BY chapter_modified DESC LIMIT 1';
       return $this->createQuery($sql);
    }
 }
