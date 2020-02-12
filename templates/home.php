@@ -1,7 +1,5 @@
 <?php
-require '../config/Autoloader.php';
-
-\App\config\Autoloader::register();
+require '../vendor/autoload.php';
 
 use App\src\DAO\ChapterDAO;
 
