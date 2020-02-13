@@ -48,4 +48,12 @@ class ChapterDAO extends DAO
          FROM chapter ch JOIN user u ON user_id = u.id WHERE chapter_status = "publish" ORDER BY chapter_modified DESC LIMIT 1';
       return $this->createQuery($sql);
    }
+
+   public function addChapter($chapter)
+    {
+        //Permet de récupérer les variables $title, $content et $author
+        extract($chapter);
+        $sql = 'INSERT INTO chapter (chapter_title, chapter_content, user_id) VALUES (?, ?, 1)';
+        $this->createQuery($sql, [$title, $content]);
+    }
 }

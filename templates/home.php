@@ -2,6 +2,7 @@
 
 <h1>Mon blog</h1>
 <p>En construction</p>
+<a href="../public/index.php?route=addChapter">Nouvel article</a>
 
 <?php
 foreach ($chapters as $chapter) {
