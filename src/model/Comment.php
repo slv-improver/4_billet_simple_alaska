@@ -5,9 +5,8 @@ namespace App\src\model;
 class Comment
 {
    private $id;
-   private $title;
-   private $content;
    private $author;
+   private $content;
    private $date;
 
    public function getId()
@@ -20,26 +19,6 @@ class Comment
       $this->id = $id;
    }
 
-   public function getTitle()
-   {
-      return $this->title;
-   }
-
-   public function setTitle($title)
-   {
-      $this->title = $title;
-   }
-
-   public function getContent()
-   {
-      return $this->content;
-   }
-
-   public function setContent($content)
-   {
-      $this->content = $content;
-   }
-
    public function getAuthor()
    {
       return $this->author;
@@ -48,6 +27,16 @@ class Comment
    public function setAuthor($author)
    {
       $this->author = $author;
+   }
+
+   public function getContent()
+   {
+      return $this->content;
+   }
+   
+   public function setContent($content)
+   {
+      $this->content = $content;
    }
 
    public function getDate()
