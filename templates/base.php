@@ -3,6 +3,8 @@
 
 <head>
    <meta charset="UTF-8" />
+   <script src="https://cdn.tiny.cloud/1/byx5g5l289zh3erindewgepf8uvsnwxuk6xnc5064r8nli6f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+   <script src='../public/js/tinymce.js'></script>
    <title><?= $title ?></title>
 </head>
 
