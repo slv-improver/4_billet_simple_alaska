@@ -5,7 +5,7 @@ namespace App\src\DAO;
 use PDO;
 use Exception;
 
-class DAO
+abstract class DAO
 {
 
    private $connection;
