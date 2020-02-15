@@ -11,9 +11,11 @@ class Router
    private $frontController;
    private $backController;
    private $errorController;
+   private $request;
 
    public function __construct()
    {
+      $this->request = new Request();
       $this->frontController = new FrontController();
       $this->backController = new BackController();
       $this->errorController = new ErrorController();
@@ -21,12 +23,13 @@ class Router
 
    public function run()
    {
+      $route = $this->request->getGet()->get('route');
       try {
-         if (isset($_GET['route'])) {
-            if ($_GET['route'] === 'chapter') {
-               $this->frontController->chapter($_GET['chapterId']);
-            } elseif($_GET['route'] === 'addChapter'){
-               $this->backController->addChapter($_POST);
+         if (isset($route)) {
+            if ($route === 'chapter') {
+               $this->frontController->chapter($this->request->getGet()->get('chapterId'));
+            } elseif($route === 'addChapter'){
+               $this->backController->addChapter($this->request->getPost());
             }else {
                $this->errorController->errorNotFound();
             }
