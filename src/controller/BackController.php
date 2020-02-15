@@ -10,6 +10,7 @@ class BackController extends Controller
    {
       if ($post->get('submit')) {
          $this->chapterDAO->addChapter($post);
+         $this->session->set('add_chapter', 'Le nouvel chapitre a bien été ajouté');
          header('Location: ../public/index.php');
       }
       return $this->view->render('add_chapter', [
