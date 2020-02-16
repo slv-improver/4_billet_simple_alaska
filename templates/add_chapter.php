@@ -4,12 +4,6 @@
 <p>En construction</p>
 
 <div>
-   <form method="post" action="../public/index.php?route=addChapter">
-      <label for="title">Titre</label><br>
-      <input type="text" id="title" name="title"><br>
-      <label for="chapterArea">Contenu</label><br>
-      <textarea id="chapterArea" name="content"></textarea><br>
-      <input type="submit" value="Envoyer" id="submit" name="submit">
-   </form>
+   <?php include('form_chapter.php'); ?>
    <a href="../public/index.php">Retour à l'accueil</a>
 </div>
