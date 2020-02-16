@@ -30,7 +30,9 @@ class Router
                $this->frontController->chapter($this->request->getGet()->get('chapterId'));
             } elseif($route === 'addChapter'){
                $this->backController->addChapter($this->request->getPost());
-            }else {
+            } elseif ($route === 'editChapter'){
+               $this->backController->editChapter($this->request->getPost(), $this->request->getGet()->get('chapterId'));
+            } else {
                $this->errorController->errorNotFound();
             }
          } else {

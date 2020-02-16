@@ -17,4 +17,17 @@ class BackController extends Controller
          'post' => $post
       ]);
    }
+
+   public function editChapter(Parameter $post, $chapterId)
+   {
+      $chapter = $this->chapterDAO->getChapter($chapterId);
+      if ($post->get('submit')) {
+         $this->chapterDAO->editChapter($post, $chapterId);
+         $this->session->set('edit_chapter', 'Le chapitre a bien été modifié');
+         header('Location: ../public/index.php');
+      }
+      return $this->view->render('edit_chapter', [
+         'chapter' => $chapter
+      ]);
+   }
 }

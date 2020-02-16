@@ -11,6 +11,10 @@
    <p>Modifié le : <?= htmlspecialchars($chapter->getDateModif()); ?></p>
 </div>
 <br>
+<div class="actions">
+    <a href="../public/index.php?route=editChapter&chapterId=<?= $chapter->getId(); ?>">Modifier</a>
+</div>
+<br>
 <a href="../public/index.php">Retour à l'accueil</a>
 
 <div id="comments" class="text-left" style="margin-left: 50px">
