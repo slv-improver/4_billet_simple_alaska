@@ -1,6 +1,6 @@
 <?php
 $route = isset($chapter) && $chapter->getId() ? 'editChapter&chapterId=' . $chapter->getId() : 'addChapter';
-$submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
+$submit = $route === 'addChapter' ? 'Envoyer' : 'Mettre à jour';
 $title = isset($chapter) && $chapter->getTitle() ? htmlspecialchars($chapter->getTitle()) : '';
 $content = isset($chapter) && $chapter->getContent() ? $chapter->getContent() : '';
 ?>

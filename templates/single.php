@@ -1,4 +1,4 @@
-<?php $this->title = "Article"; ?>
+<?php $this->title = "Chapitre"; ?>
 
 <h1>Mon blog</h1>
 <p>En construction</p>
@@ -13,6 +13,7 @@
 <br>
 <div class="actions">
     <a href="../public/index.php?route=editChapter&chapterId=<?= $chapter->getId(); ?>">Modifier</a>
+    <a href="../public/index.php?route=deleteChapter&chapterId=<?= $chapter->getId(); ?>">Supprimer</a>
 </div>
 <br>
 <a href="../public/index.php">Retour à l'accueil</a>
