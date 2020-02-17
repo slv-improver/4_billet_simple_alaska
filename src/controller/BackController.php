@@ -46,4 +46,10 @@ class BackController extends Controller
          'post' => $post
       ]);
    }
+
+   public function deleteChapter($chapterId) {
+      $this->chapterDAO->deleteChapter($chapterId);
+      $this->session->set('delete_chapter', 'Le chapitre a bien été supprimé');
+      header('Location: ../public/index.php');
+   }
 }
