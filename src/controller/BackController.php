@@ -10,7 +10,7 @@ class BackController extends Controller
    {
       if ($post->get('submit')) {
          $errors = $this->validation->validate($post, 'Chapter');
-         if ($errors) {
+         if (!$errors) {
             $this->chapterDAO->addChapter($post);
             $this->session->set('add_chapter', 'Le nouvel chapitre a bien été ajouté');
             header('Location: ../public/index.php');
@@ -28,7 +28,7 @@ class BackController extends Controller
       $chapter = $this->chapterDAO->getChapter($chapterId);
       if ($post->get('submit')) {
          $errors = $this->validation->validate($post, 'Chapter');
-         if ($errors) {
+         if (!$errors) {
             $this->chapterDAO->editChapter($post, $chapterId);
             $this->session->set('edit_chapter', 'Le chapitre a bien été modifié');
             header('Location: ../public/index.php');
@@ -43,6 +43,7 @@ class BackController extends Controller
       $post->set('content', $chapter->getContent());
 
       return $this->view->render('edit_chapter', [
+         'chapter' => $chapter,
          'post' => $post
       ]);
    }
