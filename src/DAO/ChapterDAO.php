@@ -22,7 +22,7 @@ class ChapterDAO extends DAO
    public function getChapters()
    {
       $sql = 'SELECT ch.id, user_id, u.id u_id, display_name, chapter_title, chapter_content, chapter_status, chapter_date, chapter_modified 
-         FROM chapter ch JOIN user u ON user_id = u.id ORDER BY chapter_modified DESC';
+         FROM chapter ch JOIN user u ON user_id = u.id ORDER BY chapter_date DESC';
       $result = $this->createQuery($sql);
       $chapters = [];
       foreach ($result as $row) {
@@ -51,8 +51,18 @@ class ChapterDAO extends DAO
    }
 
    public function addChapter(Parameter $post)
-    {
-        $sql = 'INSERT INTO chapter (chapter_title, chapter_content, user_id) VALUES (?, ?, 1)';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content')]);
-    }
+   {
+      $sql = 'INSERT INTO chapter (chapter_title, chapter_content, user_id) VALUES (?, ?, 1)';
+      $this->createQuery($sql, [$post->get('title'), $post->get('content')]);
+   }
+
+   public function editChapter(Parameter $post, $chapterId)
+   {
+      $sql = 'UPDATE chapter SET chapter_title=:title, chapter_content=:content, chapter_modified=NOW() WHERE id=:chapterId';
+      $this->createQuery($sql, [
+         'title' => $post->get('title'),
+         'content' => $post->get('content'),
+         'chapterId' => $chapterId
+      ]);
+   }
 }

@@ -3,9 +3,12 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 
-<?= $this->session->show('add_chapter'); ?>
+<p>
+   <?= $this->session->show('add_chapter'); ?>
+   <?= $this->session->show('edit_chapter'); ?>
+</p>
 
-<a href="../public/index.php?route=addChapter">Nouvel article</a>
+<a href="../public/index.php?route=addChapter">Nouvel chapitre</a>
 
 <?php
 foreach ($chapters as $chapter) {
