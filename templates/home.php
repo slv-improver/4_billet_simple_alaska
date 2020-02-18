@@ -7,6 +7,7 @@
    <?= $this->session->show('add_chapter'); ?>
    <?= $this->session->show('edit_chapter'); ?>
    <?= $this->session->show('delete_chapter'); ?>
+   <?= $this->session->show('add_comment'); ?>
 </p>
 
 <a href="../public/index.php?route=addChapter">Nouveau chapitre</a>

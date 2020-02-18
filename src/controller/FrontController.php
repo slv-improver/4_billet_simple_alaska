@@ -31,7 +31,7 @@ class FrontController extends Controller
          if (!$errors) {
             $this->commentDAO->addComment($post, $chapterId);
             $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
-            header('Location: ../public/index.php?route=chapter&chapterId=' . $chapterId);
+            header('Location: ../public/index.php');
          }
       }
       $chapter = $this->chapterDAO->getChapter($chapterId);
