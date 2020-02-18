@@ -9,7 +9,7 @@
    <?= $this->session->show('delete_chapter'); ?>
 </p>
 
-<a href="../public/index.php?route=addChapter">Nouvel chapitre</a>
+<a href="../public/index.php?route=addChapter">Nouveau chapitre</a>
 
 <?php
 foreach ($chapters as $chapter) {
