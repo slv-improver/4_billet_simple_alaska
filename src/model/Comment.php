@@ -8,6 +8,7 @@ class Comment
    private $author;
    private $content;
    private $date;
+   private $reported;
 
    public function getId()
    {
@@ -47,5 +48,15 @@ class Comment
    public function setDate($date)
    {
       $this->date = $date;
+   }
+
+   public function isReported()
+   {
+      return $this->reported;
+   }
+
+   public function setReported($reported)
+   {
+      $this->reported = $reported;
    }
 }

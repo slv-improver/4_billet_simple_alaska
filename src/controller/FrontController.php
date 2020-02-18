@@ -43,4 +43,11 @@ class FrontController extends Controller
          'errors' => $errors
       ]);
    }
+
+   public function reportComment($commentId)
+   {
+      $this->commentDAO->reportComment($commentId);
+      $this->session->set('report_comment', 'Le commentaire a bien été signalé');
+      header('Location: ../public/index.php');
+   }
 }

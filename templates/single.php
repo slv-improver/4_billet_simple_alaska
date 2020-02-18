@@ -28,7 +28,16 @@
       <h4><?= htmlspecialchars($comment->getAuthor()); ?></h4>
       <p><?= htmlspecialchars($comment->getContent()); ?></p>
       <p>Posté le <?= htmlspecialchars($comment->getDate()); ?></p>
-   <?php
+      <?php
+      if($comment->isReported()) {
+      ?>
+         <p>Ce commentaire a été signalé</p>
+      <?php
+      } else {
+      ?>
+         <p><a href="../public/index.php?route=reportComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
+      <?php
+      }
    }
    ?>
 </div>
