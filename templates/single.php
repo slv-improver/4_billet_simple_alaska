@@ -29,7 +29,7 @@
       <p><?= htmlspecialchars($comment->getContent()); ?></p>
       <p>Posté le <?= htmlspecialchars($comment->getDate()); ?></p>
       <?php
-      if($comment->isReported()) {
+      if ($comment->isReported()) {
       ?>
          <p>Ce commentaire a été signalé</p>
       <?php
@@ -38,6 +38,9 @@
          <p><a href="../public/index.php?route=reportComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
       <?php
       }
+      ?>
+      <p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+   <?php
    }
    ?>
 </div>
