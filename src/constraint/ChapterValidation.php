@@ -60,8 +60,9 @@ class ChapterValidation extends Validation
 		if ($this->constraint->notBlank($name, $value)) {
 			return $this->constraint->notBlank('contenu', $value);
 		}
-		if ($this->constraint->minLength($name, $value, 5)) {
-			return $this->constraint->minLength('contenu', $value, 5);
-		}
+		// error width tinymce (<p></p>)
+		/* if ($this->constraint->minLength($name, $value, 10)) {
+			return $this->constraint->minLength('contenu', $value, 10);
+		} */
 	}
 }
