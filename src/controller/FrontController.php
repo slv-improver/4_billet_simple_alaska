@@ -2,6 +2,8 @@
 
 namespace App\src\controller;
 
+use App\config\Parameter;
+
 class FrontController extends Controller
 {
    public function home()
@@ -20,5 +22,14 @@ class FrontController extends Controller
             'chapter' => $chapter,
             'comments' => $comments
         ]);
+   }
+
+   public function addComment(Parameter $post, $chapterId)
+   {
+      if ($post->get('submit')) {
+         $this->commentDAO->addComment($post, $chapterId);
+         $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
+         header('Location: ../public/index.php?route=chapter&chapterId=' . $chapterId);
+      }
    }
 }

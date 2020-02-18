@@ -1,4 +1,4 @@
-<?php $this->title = "Modifier l'chapitre"; ?>
+<?php $this->title = "Modifier le chapitre"; ?>
 
 <h1>Mon blog</h1>
 <p>En construction</p>

@@ -32,8 +32,10 @@ class Router
                $this->backController->addChapter($this->request->getPost());
             } elseif ($route === 'editChapter'){
                $this->backController->editChapter($this->request->getPost(), $this->request->getGet()->get('chapterId'));
-            } elseif ($route === 'deleteArticle') {
+            } elseif ($route === 'deleteChapter') {
                $this->backController->deleteChapter($this->request->getGet()->get('chapterId'));
+            } elseif ($route === 'addComment') {
+               $this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('chapterId'));
             } else {
                $this->errorController->errorNotFound();
             }
