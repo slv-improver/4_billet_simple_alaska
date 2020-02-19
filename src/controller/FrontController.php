@@ -82,6 +82,7 @@ class FrontController extends Controller
             $this->session->set('login_ok', 'Content de vous revoir');
             $this->session->set('id', $result['result']['id']);
             $this->session->set('login', $post->get('login'));
+            $this->session->set('pseudo', $result['result']['display_name']);
             header('Location: ../public/index.php');
          } else {
             $this->session->set('error_login', 'Le login ou le mot de passe sont incorrects');

@@ -38,7 +38,7 @@ class UserDAO extends DAO
 
 	public function login(Parameter $post)
 	{
-		$sql = 'SELECT id, passwd FROM user WHERE login = ?';
+		$sql = 'SELECT id, passwd, display_name FROM user WHERE login = ?';
 		$data = $this->createQuery($sql, [$post->get('login')]);
 		$result = $data->fetch();
 		$isPasswordValid = password_verify($post->get('password'), $result['passwd']);
@@ -46,5 +46,11 @@ class UserDAO extends DAO
 			'result' => $result,
 			'isPasswordValid' => $isPasswordValid
 		];
+	}
+
+	public function updatePassword(Parameter $post, $pseudo)
+	{
+		$sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
+		$this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $pseudo]);
 	}
 }
