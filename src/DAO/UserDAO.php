@@ -16,4 +16,23 @@ class UserDAO extends DAO
 			$post->get('pseudo')
 		]);
 	}
+
+	public function checkPseudo(Parameter $post)
+	{
+		$sql_pseudo = 'SELECT COUNT(display_name) FROM user WHERE display_name = ?';
+		$result_pseudo = $this->createQuery($sql_pseudo, [$post->get('pseudo')]);
+		$exists_pseudo = $result_pseudo->fetchColumn();
+		if ($exists_pseudo) {
+			return '<p>Le pseudo existe déjà</p>';
+		}
+	}
+	public function checkLogin(Parameter $post)
+	{
+		$sql_login = 'SELECT COUNT(login) FROM user WHERE login = ?';
+		$result_login = $this->createQuery($sql_login, [$post->get('login')]);
+		$exists_login = $result_login->fetchColumn();
+		if ($exists_login) {
+			return '<p>Le login existe déjà</p>';
+		}
+	}
 }

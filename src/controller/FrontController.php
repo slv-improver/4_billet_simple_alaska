@@ -55,6 +55,12 @@ class FrontController extends Controller
    {
       if ($post->get('submit')) {
          $errors = $this->validation->validate($post, 'User');
+         if ($this->userDAO->checkPseudo($post)) {
+            $errors['pseudo'] = $this->userDAO->checkPseudo($post);
+         }
+         if ($this->userDAO->checkLogin($post)) {
+            $errors['login'] = $this->userDAO->checkLogin($post);
+         }
          if (!$errors) {
             $this->userDAO->register($post);
             $this->session->set('register', 'Votre inscription a bien été effectuée');
