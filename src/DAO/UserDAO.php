@@ -48,9 +48,9 @@ class UserDAO extends DAO
 		];
 	}
 
-	public function updatePassword(Parameter $post, $pseudo)
+	public function updatePassword(Parameter $post, $login)
 	{
-		$sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
-		$this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $pseudo]);
+		$sql = 'UPDATE user SET passwd = ? WHERE login = ?';
+		$this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $login]);
 	}
 }
