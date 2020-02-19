@@ -73,4 +73,23 @@ class FrontController extends Controller
       }
       return $this->view->render('register');
    }
+
+   public function login(Parameter $post)
+   {
+      if ($post->get('submit')) {
+         $result = $this->userDAO->login($post);
+         if ($result && $result['isPasswordValid']) {
+            $this->session->set('login_ok', 'Content de vous revoir');
+            $this->session->set('id', $result['result']['id']);
+            $this->session->set('login', $post->get('login'));
+            header('Location: ../public/index.php');
+         } else {
+            $this->session->set('error_login', 'Le login ou le mot de passe sont incorrects');
+            return $this->view->render('login', [
+               'post' => $post
+            ]);
+         }
+      }
+      return $this->view->render('login');
+   }
 }

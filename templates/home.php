@@ -11,10 +11,23 @@
    <?= $this->session->show('report_comment'); ?>
    <?= $this->session->show('delete_comment'); ?>
    <?= $this->session->show('register'); ?>
+   <?= $this->session->show('login_ok'); ?>
 </p>
 
-<a href="../public/index.php?route=register">Inscription</a>
-<a href="../public/index.php?route=addChapter">Nouveau chapitre</a>
+<?php
+if ($this->session->get('login')) {
+    ?>
+    <a href="../public/index.php?route=logout">Déconnexion</a>
+    <a href="../public/index.php?route=profile">Profil</a>
+    <a href="../public/index.php?route=addChapter">Nouveau chapitre</a>
+    <?php
+} else {
+    ?>
+    <a href="../public/index.php?route=register">Inscription</a>
+    <a href="../public/index.php?route=login">Connexion</a>
+    <?php
+}
+?>
 
 <?php
 foreach ($chapters as $chapter) {

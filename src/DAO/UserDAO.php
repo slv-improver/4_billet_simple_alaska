@@ -35,4 +35,16 @@ class UserDAO extends DAO
 			return '<p>Le login existe déjà</p>';
 		}
 	}
+
+	public function login(Parameter $post)
+	{
+		$sql = 'SELECT id, passwd FROM user WHERE login = ?';
+		$data = $this->createQuery($sql, [$post->get('login')]);
+		$result = $data->fetch();
+		$isPasswordValid = password_verify($post->get('password'), $result['passwd']);
+		return [
+			'result' => $result,
+			'isPasswordValid' => $isPasswordValid
+		];
+	}
 }
