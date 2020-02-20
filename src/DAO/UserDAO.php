@@ -11,8 +11,8 @@ class UserDAO extends DAO
 		$sql = 'INSERT INTO user (login, passwd, display_name, registration_date) 
 			VALUES (?, ?, ?, NOW())';
 		$this->createQuery($sql, [
-			$post->get('login'), 
-			password_hash($post->get('password'), PASSWORD_BCRYPT, ['cost' => 14]), 
+			$post->get('login'),
+			password_hash($post->get('password'), PASSWORD_BCRYPT, ['cost' => 14]),
 			$post->get('pseudo')
 		]);
 	}
