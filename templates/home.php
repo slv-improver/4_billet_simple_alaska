@@ -12,6 +12,7 @@
 	<?= $this->session->show('delete_comment'); ?>
 	<?= $this->session->show('register'); ?>
 	<?= $this->session->show('login_ok'); ?>
+	<?= $this->session->show('logout'); ?>
 </p>
 
 <?php
