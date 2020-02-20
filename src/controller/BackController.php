@@ -70,9 +70,16 @@ class BackController extends Controller
 	public function updatePassword(Parameter $post)
 	{
 		if ($post->get('submit')) {
-			$this->userDAO->updatePassword($post, $this->session->get('login'));
-			$this->session->set('update_password', 'Le mot de passe a été mis à jour');
-			header('Location: ../public/index.php?route=profile');
+			$errors = $this->validation->validate($post, 'User');
+			if (!$errors) {
+				$this->userDAO->updatePassword($post, $this->session->get('login'));
+				$this->session->set('update_password', 'Le mot de passe a été mis à jour');
+				header('Location: ../public/index.php?route=profile');
+			}
+			return $this->view->render('update_password', [
+				'post' => $post,
+				'errors' => $errors
+			]);
 		}
 		return $this->view->render('update_password');
 	}
