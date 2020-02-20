@@ -10,7 +10,9 @@ $content = isset($chapter) && $chapter->getContent() ? $chapter->getContent() : 
 	<input type="text" id="title" name="title" value="<?= $title; ?>"><br>
 	<?= isset($errors['title']) ? $errors['title'] : ''; ?>
 	<label for="chapterArea">Contenu</label><br>
-	<textarea id="chapterArea" name="content" rows="25"><?= $content; ?></textarea><br>
+	<textarea id="chapterArea" name="content" rows="25">
+		<?= $content; ?>
+	</textarea><br>
 	<?= isset($errors['content']) ? $errors['content'] : ''; ?>
 	<input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
 </form>
