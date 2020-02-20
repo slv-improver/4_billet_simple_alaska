@@ -53,4 +53,10 @@ class UserDAO extends DAO
 		$sql = 'UPDATE user SET passwd = ? WHERE login = ?';
 		$this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $login]);
 	}
+
+	public function deleteAccount($login)
+	{
+		$sql = 'DELETE FROM user login = ?';
+		$this->createQuery($sql, [$login]);
+	}
 }
