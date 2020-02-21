@@ -34,9 +34,11 @@
 			<p><a href="../public/index.php?route=reportComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
 		<?php
 		}
+		if ($this->session->get('role') === 'admin') {
 		?>
-		<p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
-	<?php
+			<p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+		<?php
+		}
 	}
 	?>
 </div>
