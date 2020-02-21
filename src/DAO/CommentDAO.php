@@ -45,6 +45,20 @@ class CommentDAO extends DAO
 		$this->createQuery($sql, [$commentId]);
 	}
 
+	public function getReportedComments()
+	{
+		$sql = 'SELECT com.id, display_name, comment_content, comment_date, reported 
+			FROM comment com JOIN user u ON user_id = u.id WHERE reported = 1 ORDER BY comment_date DESC';
+		$result = $this->createQuery($sql);
+		$comments = [];
+		foreach ($result as $row) {
+			$commentId = $row['id'];
+			$comments[$commentId] = $this->buildObject($row);
+		}
+		$result->closeCursor();
+		return $comments;
+	}
+
 	public function deleteComment($commentId)
 	{
 		$sql = 'DELETE FROM comment WHERE id = ?';

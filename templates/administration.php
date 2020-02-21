@@ -46,4 +46,27 @@
 
 <h2>Commentaires signalés</h2>
 
+<table>
+	<tr>
+		<th>Id</th>
+		<th>Pseudo</th>
+		<th>Message</th>
+		<th>Date</th>
+		<th>Actions</th>
+	</tr>
+	<?php
+	foreach ($reportedComments as $comment) {
+	?>
+		<tr>
+			<td><?= $comment->getId(); ?></td>
+			<td><?= htmlspecialchars($comment->getAuthor()); ?></td>
+			<td><?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?></td>
+			<td>Créé le : <?= $comment->getDate(); ?></td>
+			<td>En construction</td>
+		</tr>
+	<?php
+	}
+	?>
+</table>
+
 <h2>Utilisateurs</h2>
