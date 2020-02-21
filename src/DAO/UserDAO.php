@@ -3,16 +3,47 @@
 namespace App\src\DAO;
 
 use App\config\Parameter;
+use App\src\model\User;
 
 class UserDAO extends DAO
 {
+	private function buildObject($row)
+	{
+		$user = new User();
+		$user->setId($row['id']);
+		$user->setLogin($row['login']);
+		$user->setPseudo($row['display_name']);
+		$user->setRegistrationDate($row['registration_date']);
+		$user->setRole($row['name']);
+		return $user;
+	}
+
+	public function getUsers()
+	{
+		$sql = 'SELECT u.id, login, display_name, registration_date, r.name FROM user u JOIN role r ON u.role_id = r.id ORDER BY u.id DESC';
+		$result = $this->createQuery($sql);
+		$users = [];
+		foreach ($result as $row) {
+			$userId = $row['id'];
+			$users[$userId] = $this->buildObject($row);
+		}
+		$result->closeCursor();
+		return $users;
+	}
+
+	public function deleteUser($userId)
+	{
+		$sql = 'DELETE FROM user WHERE id = ?';
+		$this->createQuery($sql, [$userId]);
+	}
+
 	public function register(Parameter $post)
 	{
 		$sql = 'INSERT INTO user (login, passwd, display_name, registration_date, role_id) 
 			VALUES (?, ?, ?, NOW(), 2)';
 		$this->createQuery($sql, [
 			$post->get('login'),
-			password_hash($post->get('password'), PASSWORD_BCRYPT, ['cost' => 14]),
+			password_hash($post->get('password'), PASSWORD_BCRYPT),
 			$post->get('pseudo')
 		]);
 	}
@@ -57,7 +88,7 @@ class UserDAO extends DAO
 
 	public function deleteAccount($login)
 	{
-		$sql = 'DELETE FROM user login = ?';
+		$sql = 'DELETE FROM user WHERE login = ?';
 		$this->createQuery($sql, [$login]);
 	}
 }

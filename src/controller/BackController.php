@@ -10,9 +10,12 @@ class BackController extends Controller
 	{
 		$chapters = $this->chapterDAO->getChapters();
 		$reportedComments = $this->commentDAO->getReportedComments();
+		$users = $this->userDAO->getUsers();
+		
 		return $this->view->render('administration', [
 			'chapters' => $chapters,
 			'reportedComments' => $reportedComments,
+			'users' => $users
 		]);
 	}
 
@@ -116,5 +119,12 @@ class BackController extends Controller
 		$this->session->start();
 		$this->session->set('delete_account', 'Votre compte a bien été supprimé');
 		header('Location: ../public/index.php');
+	}
+
+	public function deleteUser($userId)
+	{
+		$this->userDAO->deleteUser($userId);
+		$this->session->set('delete_user', 'L\'utilisateur a bien été supprimé');
+		header('Location: ../public/index.php?route=administration');
 	}
 }

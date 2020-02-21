@@ -9,6 +9,7 @@
 	<?= $this->session->show('delete_chapter'); ?>
 	<?= $this->session->show('unreport_comment'); ?>
 	<?= $this->session->show('delete_comment'); ?>
+	<?= $this->session->show('delete_user'); ?>
 </p>
 
 <a href="../public/index.php">Page d'accueil</a>
@@ -75,3 +76,38 @@
 </table>
 
 <h2>Utilisateurs</h2>
+
+<table>
+	<tr>
+		<th>Id</th>
+		<th>Login</th>
+		<th>Pseudo</th>
+		<th>Date</th>
+		<th>Rôle</th>
+		<th>Actions</th>
+	</tr>
+	<?php
+	foreach ($users as $user) {
+	?>
+		<tr>
+			<td><?= htmlspecialchars($user->getId()); ?></td>
+			<td><?= htmlspecialchars($user->getLogin()); ?></td>
+			<td><?= htmlspecialchars($user->getPseudo()); ?></td>
+			<td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
+			<td><?= htmlspecialchars($user->getRole()); ?></td>
+			<td>
+				<?php
+				if ($user->getRole() != 'admin') {
+				?>
+					<a href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">Supprimer</a>
+				<?php } else { ?>
+					Suppression impossible
+				<?php
+				}
+				?>
+			</td>
+		</tr>
+	<?php
+	}
+	?>
+</table>

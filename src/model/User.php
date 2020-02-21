@@ -8,7 +8,8 @@ class User
 	private $login;
 	private $password;
 	private $pseudo;
-	private $registratioDate;
+	private $registrationDate;
+	private $role;
 
 	public function getId()
 	{
@@ -52,11 +53,21 @@ class User
 
 	public function getRegistrationDate()
 	{
-		return $this->registratioDate;
+		return $this->registrationDate;
 	}
 
-	public function setRegistrationDate($registratioDate)
+	public function setRegistrationDate($registrationDate)
 	{
-		$this->registratioDate = $registratioDate;
+		$this->registrationDate = $registrationDate;
+	}
+
+	public function getRole()
+	{
+		return $this->role;
+	}
+
+	public function setRole($role)
+	{
+		$this->role = $role;
 	}
 }
