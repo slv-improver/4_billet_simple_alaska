@@ -2,6 +2,7 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 
+<?= $this->session->show('need_login'); ?>
 <?= $this->session->show('error_login'); ?>
 
 <div>

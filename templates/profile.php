@@ -2,6 +2,7 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 
+<?= $this->session->show('not_admin'); ?>
 <?= $this->session->show('update_password'); ?>
 
 <div>
