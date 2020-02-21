@@ -4,9 +4,6 @@
 <p>En construction</p>
 
 <p>
-	<?= $this->session->show('add_chapter'); ?>
-	<?= $this->session->show('edit_chapter'); ?>
-	<?= $this->session->show('delete_chapter'); ?>
 	<?= $this->session->show('add_comment'); ?>
 	<?= $this->session->show('report_comment'); ?>
 	<?= $this->session->show('delete_comment'); ?>
