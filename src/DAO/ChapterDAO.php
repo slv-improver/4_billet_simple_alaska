@@ -50,10 +50,10 @@ class ChapterDAO extends DAO
 		return $this->createQuery($sql);
 	}
 
-	public function addChapter(Parameter $post)
+	public function addChapter(Parameter $post, $userId)
 	{
-		$sql = 'INSERT INTO chapter (chapter_title, chapter_content, user_id) VALUES (?, ?, 1)';
-		$this->createQuery($sql, [$post->get('title'), $post->get('content')]);
+		$sql = 'INSERT INTO chapter (chapter_title, chapter_content, user_id) VALUES (?, ?, ?)';
+		$this->createQuery($sql, [$post->get('title'), $post->get('content'), $userId]);
 	}
 
 	public function editChapter(Parameter $post, $chapterId)

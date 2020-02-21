@@ -10,11 +10,7 @@
 	<p>Créé le : <?= htmlspecialchars($chapter->getDate()); ?></p>
 	<p>Modifié le : <?= htmlspecialchars($chapter->getDateModif()); ?></p>
 </div>
-<br>
-<div class="actions">
-	<a href="../public/index.php?route=editChapter&chapterId=<?= $chapter->getId(); ?>">Modifier</a>
-	<a href="../public/index.php?route=deleteChapter&chapterId=<?= $chapter->getId(); ?>">Supprimer</a>
-</div>
+
 <br>
 <a href="../public/index.php">Retour à l'accueil</a>
 
