@@ -59,6 +59,12 @@ class CommentDAO extends DAO
 		return $comments;
 	}
 
+	public function unreportComment($commentId)
+	{
+		$sql = 'UPDATE comment SET reported = 0 WHERE id = ?';
+		$this->createQuery($sql, [$commentId]);
+	}
+
 	public function deleteComment($commentId)
 	{
 		$sql = 'DELETE FROM comment WHERE id = ?';

@@ -38,6 +38,8 @@ class Router
 					$this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('chapterId'));
 				} elseif ($route === 'reportComment') {
 					$this->frontController->reportComment($this->request->getGet()->get('commentId'));
+				} elseif ($route === 'unreportComment') {
+					$this->backController->unreportComment($this->request->getGet()->get('commentId'));
 				} elseif ($route === 'deleteComment') {
 					$this->backController->deleteComment($this->request->getGet()->get('commentId'));
 				} elseif ($route === 'register') {

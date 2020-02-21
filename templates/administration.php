@@ -7,6 +7,8 @@
 	<?= $this->session->show('add_chapter'); ?>
 	<?= $this->session->show('edit_chapter'); ?>
 	<?= $this->session->show('delete_chapter'); ?>
+	<?= $this->session->show('unreport_comment'); ?>
+	<?= $this->session->show('delete_comment'); ?>
 </p>
 
 <a href="../public/index.php">Page d'accueil</a>
@@ -62,7 +64,10 @@
 			<td><?= htmlspecialchars($comment->getAuthor()); ?></td>
 			<td><?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?></td>
 			<td>Créé le : <?= $comment->getDate(); ?></td>
-			<td>En construction</td>
+			<td>
+				<a href="../public/index.php?route=unreportComment&commentId=<?= $comment->getId(); ?>">Désignaler</a>
+				<a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer</a>
+			</td>
 		</tr>
 	<?php
 	}

@@ -6,7 +6,6 @@
 <p>
 	<?= $this->session->show('add_comment'); ?>
 	<?= $this->session->show('report_comment'); ?>
-	<?= $this->session->show('delete_comment'); ?>
 	<?= $this->session->show('register'); ?>
 	<?= $this->session->show('login_ok'); ?>
 	<?= $this->session->show('logout'); ?>
