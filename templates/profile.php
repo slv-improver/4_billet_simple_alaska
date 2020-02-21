@@ -1,6 +1,6 @@
 <?php $this->title = 'Mon profil'; ?>
-<h1>Mon blog</h1>
-<p>En construction</p>
+
+<?php require_once 'header.php'; ?>
 
 <?= $this->session->show('not_admin'); ?>
 <?= $this->session->show('update_password'); ?>

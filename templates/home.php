@@ -1,7 +1,6 @@
 <?php $this->title = "Accueil"; ?>
 
-<h1>Mon blog</h1>
-<p>En construction</p>
+<?php require_once 'header.php'; ?>
 
 <p>
 	<?= $this->session->show('add_comment'); ?>

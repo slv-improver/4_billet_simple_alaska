@@ -1,7 +1,6 @@
 <?php $this->title = "Chapitre"; ?>
 
-<h1>Mon blog</h1>
-<p>En construction</p>
+<?php require_once 'header.php'; ?>
 
 <div>
 	<h2><?= htmlspecialchars($chapter->getTitle()); ?></h2>
@@ -37,7 +36,7 @@
 		if ($this->session->get('role') === 'admin') {
 		?>
 			<p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
-		<?php
+	<?php
 		}
 	}
 	?>

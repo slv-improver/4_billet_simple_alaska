@@ -1,6 +1,6 @@
 <?php $this->title = "Connexion"; ?>
-<h1>Mon blog</h1>
-<p>En construction</p>
+
+<?php require_once 'header.php'; ?>
 
 <?= $this->session->show('need_login'); ?>
 <?= $this->session->show('error_login'); ?>
