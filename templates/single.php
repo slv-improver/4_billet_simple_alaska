@@ -15,7 +15,16 @@
 
 <div id="comments" class="text-left" style="margin-left: 50px">
 	<h3>Ajouter un commentaire</h3>
-	<?php include 'form_comment.php' ?>
+	<?php
+	if ($this->session->get('login')) {
+		include 'form_comment.php';
+	} else {
+		?>
+		<p>Vous devez être connecté pour ajouter un commentaire</p>
+		<?php
+		include 'form_login.php';
+	}
+	?>
 	<h3>Commentaires</h3>
 	<?php
 	foreach ($comments as $comment) {
