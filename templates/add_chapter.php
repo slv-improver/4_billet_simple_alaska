@@ -4,5 +4,5 @@
 
 <div>
 	<?php include('form_chapter.php'); ?>
-	<a href="../public/index.php">Retour à l'accueil</a>
+	<a href="index.php">Retour à l'accueil</a>
 </div>

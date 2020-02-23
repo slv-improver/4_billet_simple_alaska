@@ -5,7 +5,7 @@ $title = isset($chapter) && $chapter->getTitle() ? htmlspecialchars($chapter->ge
 $content = isset($chapter) && $chapter->getContent() ? $chapter->getContent() : '';
 ?>
 
-<form method="post" action="../public/index.php?route=<?= $route; ?>">
+<form method="post" action="index.php?route=<?= $route; ?>">
 	<label for="title">Titre</label><br>
 	<input type="text" id="title" name="title" value="<?= $title; ?>"><br>
 	<?= isset($errors['title']) ? $errors['title'] : ''; ?>

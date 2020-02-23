@@ -11,10 +11,10 @@
 	<?= $this->session->show('delete_user'); ?>
 </p>
 
-<a href="../public/index.php">Page d'accueil</a>
+<a href="index.php">Page d'accueil</a>
 
 <h2>Chapitres</h2>
-<a href="../public/index.php?route=addChapter">Nouveau chapitre</a>
+<a href="index.php?route=addChapter">Nouveau chapitre</a>
 
 <table>
 	<tr>
@@ -31,14 +31,14 @@
 	?>
 		<tr>
 			<td><?= $chapter->getId(); ?></td>
-			<td><a href="../public/index.php?route=chapter&chapterId=<?= $chapter->getId(); ?>"><?= $chapter->getTitle(); ?></a></td>
+			<td><a href="index.php?route=chapter&chapterId=<?= $chapter->getId(); ?>"><?= $chapter->getTitle(); ?></a></td>
 			<td><?= substr($chapter->getContent(), 0, 150); ?></td>
 			<td><?= $chapter->getAuthor(); ?></td>
 			<td>Créé le : <?= $chapter->getDate(); ?></td>
 			<td>Modifié le : <?= $chapter->getDate(); ?></td>
 			<td>
-				<a href="../public/index.php?route=editChapter&chapterId=<?= $chapter->getId(); ?>">Modifier</a>
-				<a href="../public/index.php?route=deleteChapter&chapterId=<?= $chapter->getId(); ?>">Supprimer</a>
+				<a href="index.php?route=editChapter&chapterId=<?= $chapter->getId(); ?>">Modifier</a>
+				<a href="index.php?route=deleteChapter&chapterId=<?= $chapter->getId(); ?>">Supprimer</a>
 			</td>
 		</tr>
 	<?php
@@ -65,8 +65,8 @@
 			<td><?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?></td>
 			<td>Créé le : <?= $comment->getDate(); ?></td>
 			<td>
-				<a href="../public/index.php?route=unreportComment&commentId=<?= $comment->getId(); ?>">Désignaler</a>
-				<a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer</a>
+				<a href="index.php?route=unreportComment&commentId=<?= $comment->getId(); ?>">Désignaler</a>
+				<a href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer</a>
 			</td>
 		</tr>
 	<?php
@@ -98,7 +98,7 @@
 				<?php
 				if ($user->getRole() != 'admin') {
 				?>
-					<a href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">Supprimer</a>
+					<a href="index.php?route=deleteUser&userId=<?= $user->getId(); ?>">Supprimer</a>
 				<?php } else { ?>
 					Suppression impossible
 				<?php
