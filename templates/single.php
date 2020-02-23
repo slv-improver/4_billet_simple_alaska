@@ -11,7 +11,7 @@
 </div>
 
 <br>
-<a href="../public/index.php">Retour à l'accueil</a>
+<a href="index.php">Retour à l'accueil</a>
 
 <div id="comments" class="text-left" style="margin-left: 50px">
 	<h3>Ajouter un commentaire</h3>
@@ -30,12 +30,12 @@
 		<?php
 		} else {
 		?>
-			<p><a href="../public/index.php?route=reportComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
+			<p><a href="index.php?route=reportComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
 		<?php
 		}
 		if ($this->session->get('role') === 'admin') {
 		?>
-			<p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+			<p><a href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
 	<?php
 		}
 	}

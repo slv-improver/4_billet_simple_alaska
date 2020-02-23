@@ -31,7 +31,7 @@ class FrontController extends Controller
 			if (!$errors) {
 				$this->commentDAO->addComment($post, $chapterId);
 				$this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
-				header('Location: ../public/index.php');
+				header('Location: index.php');
 			}
 		}
 		$chapter = $this->chapterDAO->getChapter($chapterId);
@@ -48,7 +48,7 @@ class FrontController extends Controller
 	{
 		$this->commentDAO->reportComment($commentId);
 		$this->session->set('report_comment', 'Le commentaire a bien été signalé');
-		header('Location: ../public/index.php');
+		header('Location: index.php');
 	}
 
 	public function register(Parameter $post)
@@ -64,7 +64,7 @@ class FrontController extends Controller
 			if (!$errors) {
 				$this->userDAO->register($post);
 				$this->session->set('register', 'Votre inscription a bien été effectuée');
-				header('Location: ../public/index.php');
+				header('Location: index.php');
 			}
 			return $this->view->render('register', [
 				'post' => $post,
@@ -84,7 +84,7 @@ class FrontController extends Controller
 				$this->session->set('login', $post->get('login'));
 				$this->session->set('pseudo', $result['result']['display_name']);
 				$this->session->set('role', $result['result']['name']);
-				header('Location: ../public/index.php');
+				header('Location: index.php');
 			} else {
 				$this->session->set('error_login', 'Le login ou le mot de passe sont incorrects');
 				return $this->view->render('login', [
