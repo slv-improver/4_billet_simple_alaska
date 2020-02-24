@@ -11,5 +11,3 @@
 	<a href="index.php?route=updatePassword">Modifier son mot de passe</a>
 	<a href="index.php?route=deleteAccount">Supprimer mon compte</a>
 </div>
-<br>
-<a href="index.php">Retour à l'accueil</a>

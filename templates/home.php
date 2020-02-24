@@ -12,32 +12,15 @@
 </p>
 
 <?php
-if ($this->session->get('login')) {
-?>
-	<?php if ($this->session->get('role') === 'admin') { ?>
-		<a href="index.php?route=administration">Administration</a>
-	<?php } ?>
-	<a href="index.php?route=logout">Déconnexion</a>
-	<a href="index.php?route=profile">Profil</a>
-<?php
-} else {
-?>
-	<a href="index.php?route=register">Inscription</a>
-	<a href="index.php?route=login">Connexion</a>
-<?php
-}
-?>
-
-<?php
 foreach ($chapters as $chapter) {
 ?>
-	<div>
+	<article>
 		<h2><a href="index.php?route=chapter&chapterId=<?= htmlspecialchars($chapter->getId()); ?>"><?= htmlspecialchars($chapter->getTitle()); ?></a></h2>
 		<p><?= $chapter->getContent(); ?></p>
 		<p><?= htmlspecialchars($chapter->getAuthor()); ?></p>
 		<p>Créé le : <?= htmlspecialchars($chapter->getDate()); ?></p>
 		<p>Modifié le : <?= htmlspecialchars($chapter->getDateModif()); ?></p>
-	</div>
+	</article>
 	<br>
 <?php
 }

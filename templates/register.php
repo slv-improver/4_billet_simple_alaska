@@ -1,8 +1,9 @@
 <?php $this->title = "Inscription"; ?>
 
 <?php require_once 'header.php'; ?>
+<a href="index.php">Retour à l'accueil</a>
 
-<div>
+<div class="row justify-content-center">
 	<form method="post" action="index.php?route=register">
 		<label for="pseudo">Pseudo</label><br>
 		<input type="text" id="pseudo" name="pseudo" value="<?= isset($post) ? htmlspecialchars($post->get('pseudo')) : ''; ?>"><br>
@@ -16,5 +17,4 @@
 		<p>J'ai déjà un compte. <a href="index.php?route=login">Me connecter</a></p>
 		<input type="submit" value="Inscription" id="submit" name="submit">
 	</form>
-	<a href="index.php">Retour à l'accueil</a>
 </div>
