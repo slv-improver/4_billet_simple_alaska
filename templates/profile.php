@@ -12,7 +12,7 @@
 </div>
 
 <section>
-	<h2>Mes commentaires</h2>
+	<h3>Mes commentaires</h3>
 	<table>
 		<tr>
 			<th>Chapitre</th>

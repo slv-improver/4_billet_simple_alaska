@@ -12,7 +12,7 @@
 </p>
 
 <section>
-	<h2>Chapitres</h2>
+	<h3>Chapitres</h3>
 
 	<a href="index.php?route=addChapter">Nouveau chapitre</a>
 
@@ -50,7 +50,7 @@
 </section>
 
 <section>
-	<h2>Commentaires signalés</h2>
+	<h3>Commentaires signalés</h3>
 
 	<table>
 		<tr>
@@ -80,7 +80,7 @@
 </section>
 
 <section>
-	<h2>Utilisateurs</h2>
+	<h3>Utilisateurs</h3>
 
 	<table>
 		<tr>
