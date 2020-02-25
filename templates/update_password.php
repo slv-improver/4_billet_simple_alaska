@@ -1,7 +1,6 @@
 <?php $this->title = 'Modifier mon mot de passe'; ?>
 
 <?php require_once 'header.php'; ?>
-<a href="index.php">Retour à l'accueil</a>
 
 <div class="row justify-content-center">
 	<form method="post" action="index.php?route=updatePassword">

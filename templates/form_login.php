@@ -1,6 +1,5 @@
-<?= $this->session->show('need_login'); ?>
-
 <form method="post" action="index.php?route=login">
+	<?= $this->session->show('need_login'); ?><br>
 	<label for="login">Login</label><br>
 	<input type="text" id="login" name="login"><br>
 	<label for="password">Mot de passe</label><br>
