@@ -17,6 +17,11 @@ body {
 	text-align: center;
 }
 
+.chapters {
+	height: 72px;
+	overflow: hidden;
+}
+
 .txt-center {
 	text-align: center;
 }

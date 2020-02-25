@@ -15,11 +15,13 @@
 foreach ($chapters as $chapter) {
 ?>
 	<article>
-		<h2><a href="index.php?route=chapter&chapterId=<?= htmlspecialchars($chapter->getId()); ?>"><?= htmlspecialchars($chapter->getTitle()); ?></a></h2>
-		<p><?= $chapter->getContent(); ?></p>
-		<p><?= htmlspecialchars($chapter->getAuthor()); ?></p>
-		<p>Créé le : <?= htmlspecialchars($chapter->getDate()); ?></p>
-		<p>Modifié le : <?= htmlspecialchars($chapter->getDateModif()); ?></p>
+		<h2>
+			<?= htmlspecialchars($chapter->getOrder()) . '. ' . htmlspecialchars($chapter->getTitle()); ?>
+		</h2>
+		<div class="chapters"><?= $chapter->getContent(); ?></div>
+		...<a href="index.php?route=chapter&chapterId=<?= htmlspecialchars($chapter->getId()); ?>">
+			Poursuivre la lecture.
+		</a>
 	</article>
 	<br>
 <?php

@@ -2,15 +2,10 @@
 
 <?php require_once 'header.php'; ?>
 
-<a href="index.php?route=chapter&chapterId=<?= (int)$chapter->getOrder()-1 ;?>">Chapitre précédent</a>
-<a href="index.php?route=chapter&chapterId=<?= (int)$chapter->getOrder()+1 ;?>">Chapitre suivant</a>
 <section id="single" class="row justify-content-between">
 	<article class="col-md-8 col-lg-8 overflow-auto">
 		<h2><?= htmlspecialchars($chapter->getTitle()); ?></h2>
 		<p><?= $chapter->getContent(); ?></p>
-		<p><?= htmlspecialchars($chapter->getAuthor()); ?></p>
-		<p>Créé le : <?= htmlspecialchars($chapter->getDate()); ?></p>
-		<p>Modifié le : <?= htmlspecialchars($chapter->getDateModif()); ?></p>
 	</article>
 
 	<aside id="comments" class="col-md-4 col-lg-3 overflow-auto">
