@@ -111,8 +111,7 @@ class BackController extends Controller
 	public function deleteComment($commentId)
 	{
 		if ($this->checkAdmin()) {
-			$this->commentDAO->
-			deleteComment($commentId);
+			$this->commentDAO->deleteComment($commentId);
 			$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
 			header('Location: index.php?route=administration');
 		}
@@ -121,7 +120,10 @@ class BackController extends Controller
 	public function profile()
 	{
 		if ($this->checkLoggedIn()) {
-			return $this->view->render('profile');
+			$commentsUser = $this->commentDAO->getCommentsFromUser($this->session->get('id'));
+			return $this->view->render('profile', [
+				'comments' => $commentsUser
+			]);
 		}
 	}
 

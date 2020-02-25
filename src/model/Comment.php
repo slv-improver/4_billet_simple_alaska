@@ -5,6 +5,7 @@ namespace App\src\model;
 class Comment
 {
 	private $id;
+	private $chapterName;
 	private $author;
 	private $content;
 	private $date;
@@ -18,6 +19,16 @@ class Comment
 	public function setId($id)
 	{
 		$this->id = $id;
+	}
+
+	public function getChapterName()
+	{
+		return $this->chapterName;
+	}
+
+	public function setChapterName($chapterName)
+	{
+		$this->chapterName = $chapterName;
 	}
 
 	public function getAuthor()
