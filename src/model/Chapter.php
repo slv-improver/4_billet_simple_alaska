@@ -8,6 +8,7 @@ class Chapter
 	private $title;
 	private $content;
 	private $author;
+	private $order;
 	private $date;
 	private $dateModif;
 
@@ -49,6 +50,16 @@ class Chapter
 	public function setAuthor($author)
 	{
 		$this->author = $author;
+	}
+
+	public function getOrder()
+	{
+		return $this->order;
+	}
+
+	public function setOrder($order)
+	{
+		$this->order = $order;
 	}
 
 	public function getDate()

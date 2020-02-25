@@ -19,23 +19,25 @@
 	<table>
 		<tr>
 			<th>Id</th>
+			<th>Order</th>
 			<th>Titre</th>
 			<th>Contenu</th>
 			<th>Auteur</th>
-			<th>Date</th>
-			<th>Modification</th>
+			<th>Créé le :</th>
+			<th>Modifié le :</th>
 			<th>Actions</th>
 		</tr>
 		<?php
 		foreach ($chapters as $chapter) {
 		?>
 			<tr>
-				<td><?= $chapter->getId(); ?></td>
+				<td class="indication"><?= $chapter->getId(); ?></td>
+				<td class="txt-center"><?= $chapter->getOrder(); ?></td>
 				<td><a href="index.php?route=chapter&chapterId=<?= $chapter->getId(); ?>"><?= $chapter->getTitle(); ?></a></td>
 				<td><?= substr($chapter->getContent(), 0, 150); ?></td>
 				<td><?= $chapter->getAuthor(); ?></td>
-				<td>Créé le : <?= $chapter->getDate(); ?></td>
-				<td>Modifié le : <?= $chapter->getDate(); ?></td>
+				<td><?= $chapter->getDate(); ?></td>
+				<td><?= $chapter->getDate(); ?></td>
 				<td>
 					<a href="index.php?route=editChapter&chapterId=<?= $chapter->getId(); ?>">Modifier</a>
 					<a href="index.php?route=deleteChapter&chapterId=<?= $chapter->getId(); ?>">Supprimer</a>
@@ -49,7 +51,7 @@
 
 <section>
 	<h2>Commentaires signalés</h2>
-	
+
 	<table>
 		<tr>
 			<th>Id</th>
@@ -62,7 +64,7 @@
 		foreach ($reportedComments as $comment) {
 		?>
 			<tr>
-				<td><?= $comment->getId(); ?></td>
+				<td class="indication"><?= $comment->getId(); ?></td>
 				<td><?= htmlspecialchars($comment->getAuthor()); ?></td>
 				<td><?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?></td>
 				<td>Créé le : <?= $comment->getDate(); ?></td>
@@ -79,7 +81,7 @@
 
 <section>
 	<h2>Utilisateurs</h2>
-	
+
 	<table>
 		<tr>
 			<th>Id</th>
@@ -93,7 +95,7 @@
 		foreach ($users as $user) {
 		?>
 			<tr>
-				<td><?= htmlspecialchars($user->getId()); ?></td>
+				<td class="indication"><?= htmlspecialchars($user->getId()); ?></td>
 				<td><?= htmlspecialchars($user->getLogin()); ?></td>
 				<td><?= htmlspecialchars($user->getPseudo()); ?></td>
 				<td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
