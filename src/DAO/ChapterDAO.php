@@ -10,13 +10,13 @@ class ChapterDAO extends DAO
 	private function buildObject($row)
 	{
 		$chapter = new Chapter();
-		$chapter->setId($row['id']);
-		$chapter->setTitle($row['chapter_title']);
-		$chapter->setContent($row['chapter_content']);
-		$chapter->setAuthor($row['display_name']);
-		$chapter->setOrder($row['chapter_order']);
-		$chapter->setDate($row['chapter_date']);
-		$chapter->setDateModif($row['chapter_modified']);
+		if (isset($row['id'])) {$chapter->setId($row['id']);}
+		if (isset($row['chapter_title'])) {$chapter->setTitle($row['chapter_title']);}
+		if (isset($row['chapter_content'])) {$chapter->setContent($row['chapter_content']);}
+		if (isset($row['display_name'])) {$chapter->setAuthor($row['display_name']);}
+		if (isset($row['chapter_order'])) {$chapter->setOrder($row['chapter_order']);}
+		if (isset($row['chapter_date'])) {$chapter->setDate($row['chapter_date']);}
+		if (isset($row['chapter_modified'])) {$chapter->setDateModif($row['chapter_modified']);}
 		return $chapter;
 	}
 

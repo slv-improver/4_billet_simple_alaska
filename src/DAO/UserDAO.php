@@ -10,11 +10,11 @@ class UserDAO extends DAO
 	private function buildObject($row)
 	{
 		$user = new User();
-		$user->setId($row['id']);
-		$user->setLogin($row['login']);
-		$user->setPseudo($row['display_name']);
-		$user->setRegistrationDate($row['registration_date']);
-		$user->setRole($row['name']);
+		if (isset($row['id'])) {$user->setId($row['id']);}
+		if (isset($row['login'])) {$user->setLogin($row['login']);}
+		if (isset($row['display_name'])) {$user->setPseudo($row['display_name']);}
+		if (isset($row['registration_date'])) {$user->setRegistrationDate($row['registration_date']);}
+		if (isset($row['name'])) {$user->setRole($row['name']);}
 		return $user;
 	}
 

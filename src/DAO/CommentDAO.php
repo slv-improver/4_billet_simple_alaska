@@ -10,11 +10,12 @@ class CommentDAO extends DAO
 	private function buildObject($row)
 	{
 		$comment = new Comment();
-		$comment->setId($row['id']);
-		$comment->setAuthor($row['display_name']);
-		$comment->setContent($row['comment_content']);
-		$comment->setDate($row['comment_date']);
-		$comment->setReported($row['reported']);
+		if (isset($row['id'])) {$comment->setId($row['id']);}
+		if (isset($row['chapter_title'])) {$comment->setChapterName($row['chapter_title']);}
+		if (isset($row['display_name'])) {$comment->setAuthor($row['display_name']);}
+		if (isset($row['comment_content'])) {$comment->setContent($row['comment_content']);}
+		if (isset($row['comment_date'])) {$comment->setDate($row['comment_date']);}
+		if (isset($row['reported'])) {$comment->setReported($row['reported']);}
 		return $comment;
 	}
 
@@ -27,6 +28,22 @@ class CommentDAO extends DAO
 		foreach ($result as $row) {
 			$chapterId = $row['id'];
 			$comments[$chapterId] = $this->buildObject($row);
+		}
+		$result->closeCursor();
+		return $comments;
+	}
+
+	public function getCommentsFromUser($userId)
+	{
+		$sql = 'SELECT com.id, com.user_id, chapter_title, comment_content, comment_date, reported
+         FROM comment com 
+			JOIN chapter ch ON chapter_id = ch.id
+			WHERE com.user_id = :userId ORDER BY comment_date DESC';
+		$result = $this->createQuery($sql, ['userId' => $userId]);
+		$comments = [];
+		foreach ($result as $row) {
+			$userId = $row['id'];
+			$comments[$userId] = $this->buildObject($row);
 		}
 		$result->closeCursor();
 		return $comments;
