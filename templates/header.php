@@ -21,5 +21,5 @@
 	<a href="index.php" id="home">Accueil</a>
 
 	<h1>Billet Simple pour l'Alaska</h1>
-	<h2>un roman de Jean Forteroche</h2>
+	<h2>par Jean Forteroche</h2>
 </header>
