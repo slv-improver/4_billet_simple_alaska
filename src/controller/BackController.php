@@ -74,13 +74,15 @@ class BackController extends Controller
 				}
 				return $this->view->render('edit_chapter', [
 					'chapter' => $chapter,
-					'errors' => $errors
+					'errors' => $errors,
+					'post' => $post
 				]);
 			}
 			$post->set('id', $chapter->getId());
 			$post->set('title', $chapter->getTitle());
+			$post->set('order', $chapter->getOrder());
 			$post->set('content', $chapter->getContent());
-	
+			
 			return $this->view->render('edit_chapter', [
 				'chapter' => $chapter,
 				'post' => $post
