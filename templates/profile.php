@@ -4,6 +4,7 @@
 
 <?= $this->session->show('not_admin'); ?>
 <?= $this->session->show('update_password'); ?>
+<?= $this->session->show('delete_comment'); ?>
 
 <div>
 	<h2><?= $this->session->get('pseudo'); ?></h2>
@@ -25,13 +26,13 @@
 		<?php
 		foreach ($comments as $comment) {
 		?>
-		<tr>
-			<td><?= htmlspecialchars($comment->getChapterName()) ; ?></td>
-			<td><?= htmlspecialchars($comment->getContent()) ; ?></td>
-			<td><?= htmlspecialchars($comment->getDate()) ; ?></td>
-			<td><?= htmlspecialchars($comment->isReported()) ; ?></td>
-			<td></td>
-		</tr>
+			<tr>
+				<td><?= htmlspecialchars($comment->getChapterName()); ?></td>
+				<td><?= htmlspecialchars($comment->getContent()); ?></td>
+				<td><?= htmlspecialchars($comment->getDate()); ?></td>
+				<td><?= htmlspecialchars($comment->isReported()); ?></td>
+				<td><a href="index.php?route=deleteMyComment&commentId=<?= $comment->getId(); ?>">Supprimer</a></td>
+			</tr>
 		<?php
 		}
 		?>

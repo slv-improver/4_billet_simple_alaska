@@ -114,7 +114,7 @@ class BackController extends Controller
 			$this->commentDAO->deleteComment($commentId);
 			$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
 			header('Location: index.php?route=administration');
-		}
+		} 
 	}
 	
 	public function profile()
@@ -124,6 +124,15 @@ class BackController extends Controller
 			return $this->view->render('profile', [
 				'comments' => $commentsUser
 			]);
+		}
+	}
+
+	public function deleteMyComment($commentId)
+	{
+		if ($this->checkLoggedIn()) {
+			$this->commentDAO->deleteComment($commentId);
+			$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
+			header('Location: index.php?route=profile');
 		}
 	}
 

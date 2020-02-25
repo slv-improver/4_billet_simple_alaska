@@ -42,6 +42,8 @@ class Router
 					$this->backController->unreportComment($this->request->getGet()->get('commentId'));
 				} elseif ($route === 'deleteComment') {
 					$this->backController->deleteComment($this->request->getGet()->get('commentId'));
+				} elseif ($route === 'deleteMyComment') {
+					$this->backController->deleteMyComment($this->request->getGet()->get('commentId'));
 				} elseif ($route === 'register') {
 					$this->frontController->register($this->request->getPost());
 				} elseif ($route === 'login') {
