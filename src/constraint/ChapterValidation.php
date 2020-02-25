@@ -30,6 +30,9 @@ class ChapterValidation extends Validation
 		} elseif ($name === 'content') {
 			$error = $this->checkContent($name, $value);
 			$this->addError($name, $error);
+		} elseif ($name === 'order') {
+			$error = $this->checkOrder($name, $value);
+			$this->addError($name, $error);
 		}
 	}
 
@@ -64,5 +67,14 @@ class ChapterValidation extends Validation
 		/* if ($this->constraint->minLength($name, $value, 10)) {
 			return $this->constraint->minLength('contenu', $value, 10);
 		} */
+	}
+
+	private function checkOrder($name, $value)
+	{
+		if ($this->constraint->notBlank($name, $value)) {
+			return $this->constraint->notBlank('ordre', $value);
+		} elseif ($this->constraint->isNumber($name, $value)) {
+			return $this->constraint->isNumber('ordre', $value);
+		}
 	}
 }

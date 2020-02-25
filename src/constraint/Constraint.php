@@ -6,7 +6,7 @@ class Constraint
 {
 	public function notBlank($name, $value)
 	{
-		if (empty($value)) {
+		if ($value === '') {
 			return "<p>Le champ \"$name\" saisi est vide</p>";
 		}
 	}
@@ -32,6 +32,12 @@ class Constraint
 	{
 		if (!preg_match("#[a-z]#", $value)) {
 			return "<p>Le mot de passe doit contenir au moins une lettre minuscule</p>";
+		}
+	}
+	public function isNumber($name, $value)
+	{
+		if (!is_numeric($value)) {
+			return "<p>Le champs \"$name\" doit être un nombre</p>";
 		}
 	}
 }
