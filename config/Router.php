@@ -26,42 +26,62 @@ class Router
 		$route = $this->request->getGet()->get('route');
 		try {
 			if (isset($route)) {
-				if ($route === 'chapter') {
-					$this->frontController->chapter($this->request->getGet()->get('chapterId'));
-				} elseif($route === 'addChapter'){
-					$this->backController->addChapter($this->request->getPost());
-				} elseif ($route === 'editChapter'){
-					$this->backController->editChapter($this->request->getPost(), $this->request->getGet()->get('chapterId'));
-				} elseif ($route === 'deleteChapter') {
-					$this->backController->deleteChapter($this->request->getGet()->get('chapterId'));
-				} elseif ($route === 'addComment') {
-					$this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('chapterId'));
-				} elseif ($route === 'reportComment') {
-					$this->frontController->reportComment($this->request->getGet()->get('commentId'));
-				} elseif ($route === 'unreportComment') {
-					$this->backController->unreportComment($this->request->getGet()->get('commentId'));
-				} elseif ($route === 'deleteComment') {
-					$this->backController->deleteComment($this->request->getGet()->get('commentId'));
-				} elseif ($route === 'deleteMyComment') {
-					$this->backController->deleteMyComment($this->request->getGet()->get('commentId'));
-				} elseif ($route === 'register') {
-					$this->frontController->register($this->request->getPost());
-				} elseif ($route === 'login') {
-					$this->frontController->login($this->request->getPost());
-				} elseif ($route === 'profile') {
-					$this->backController->profile();
-				} elseif ($route === 'updatePassword') {
-					$this->backController->updatePassword($this->request->getPost());
-				} elseif ($route === 'logout') {
-					$this->backController->logout();
-				} elseif ($route === 'deleteAccount') {
-					$this->backController->deleteAccount();
-				} elseif ($route === 'deleteUser') {
-					$this->backController->deleteUser($this->request->getGet()->get('userId'));
-				} elseif ($route === 'administration') {
-					$this->backController->administration();
-				} else {
-					$this->errorController->errorNotFound();
+				switch ($route) {
+					case 'chapter':
+						$this->frontController->chapter($this->request->getGet()->get('chapterId'));
+						break;
+					case 'addChapter':
+						$this->backController->addChapter($this->request->getPost());
+						break;
+					case 'editChapter':
+						$this->backController->editChapter($this->request->getPost(), $this->request->getGet()->get('chapterId'));
+						break;
+					case 'deleteChapter':
+						$this->backController->deleteChapter($this->request->getGet()->get('chapterId'));
+						break;
+					case 'addComment':
+						$this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('chapterId'));
+						break;
+					case 'reportComment':
+						$this->frontController->reportComment($this->request->getGet()->get('commentId'));
+						break;
+					case 'unreportComment':
+						$this->backController->unreportComment($this->request->getGet()->get('commentId'));
+						break;
+					case 'deleteReportedComment':
+						$this->backController->deleteReportedComment($this->request->getGet()->get('commentId'));
+						break;
+					case 'deleteComment':
+						$this->backController->deleteComment($this->request->getGet()->get('commentId'));
+						break;
+					case 'register':
+						$this->frontController->register($this->request->getPost());
+						break;
+					case 'login':
+						$this->frontController->login($this->request->getPost());
+						break;
+					case 'profile':
+						$this->backController->profile();
+						break;
+					case 'updatePassword':
+						$this->backController->updatePassword($this->request->getPost());
+						break;
+					case 'logout':
+						$this->backController->logout();
+						break;
+					case 'deleteAccount':
+						$this->backController->deleteAccount();
+						break;
+					case 'deleteUser':
+						$this->backController->deleteUser($this->request->getGet()->get('userId'));
+						break;
+					case 'administration':
+						$this->backController->administration();
+						break;
+					
+					default:
+						$this->errorController->errorNotFound();
+						break;
 				}
 			} else {
 				$this->frontController->home();
