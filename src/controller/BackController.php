@@ -108,7 +108,7 @@ class BackController extends Controller
 		}
 	}
 	
-	public function deleteComment($commentId)
+	public function deleteReportedComment($commentId)
 	{
 		if ($this->checkAdmin()) {
 			$this->commentDAO->deleteComment($commentId);
@@ -127,7 +127,7 @@ class BackController extends Controller
 		}
 	}
 
-	public function deleteMyComment($commentId)
+	public function deleteComment($commentId)
 	{
 		if ($this->checkLoggedIn()) {
 			$this->commentDAO->deleteComment($commentId);

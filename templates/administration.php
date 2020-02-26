@@ -70,7 +70,7 @@
 				<td>Créé le : <?= $comment->getDate(); ?></td>
 				<td>
 					<a href="index.php?route=unreportComment&commentId=<?= $comment->getId(); ?>">Désignaler</a>
-					<a href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer</a>
+					<a href="index.php?route=deleteReportedComment&commentId=<?= $comment->getId(); ?>">Supprimer</a>
 				</td>
 			</tr>
 		<?php
