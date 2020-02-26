@@ -130,8 +130,13 @@ class BackController extends Controller
 	public function deleteComment($commentId)
 	{
 		if ($this->checkLoggedIn()) {
-			$this->commentDAO->deleteComment($commentId);
-			$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
+			$comment = $this->commentDAO->getComment($commentId);
+			if ($comment->getAuthor() === $this->request->getSession()->get('pseudo')) {
+				$this->commentDAO->deleteComment($commentId);
+				$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
+			} else {
+				$this->session->set('delete_comment', 'Vous ne pouvez supprimer que vos commentaires');
+			}
 			header('Location: index.php?route=profile');
 		}
 	}

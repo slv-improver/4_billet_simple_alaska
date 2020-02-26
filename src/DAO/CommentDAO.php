@@ -49,6 +49,18 @@ class CommentDAO extends DAO
 		return $comments;
 	}
 
+	public function getComment($commentId)
+	{
+		$sql = 'SELECT com.id, u.display_name, comment_content 
+			FROM comment com 
+			JOIN user u ON com.user_id = u.id
+			WHERE com.id = :commentId';
+		$result = $this->createQuery($sql, ['commentId' => $commentId]);
+		$comments = $result->fetch();
+		$result->closeCursor();
+		return $this->buildObject($comments);
+	}
+
 	public function addComment(Parameter $post, $chapterId, $pseudo)
 	{
 		$sql = 'INSERT INTO comment (user_id, comment_content, comment_date, chapter_id)
