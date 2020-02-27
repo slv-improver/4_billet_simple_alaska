@@ -6,13 +6,14 @@
 	<?= $this->session->show('add_chapter'); ?>
 	<?= $this->session->show('edit_chapter'); ?>
 	<?= $this->session->show('delete_chapter'); ?>
+	<?= $this->session->show('report_comment'); ?>
 	<?= $this->session->show('unreport_comment'); ?>
 	<?= $this->session->show('delete_comment'); ?>
 	<?= $this->session->show('delete_user'); ?>
 </p>
 
 <section>
-	<h3>Chapitres</h3>
+	<h3 id="chapters">Chapitres</h3>
 
 	<a href="index.php?route=addChapter">Nouveau chapitre</a>
 
@@ -50,44 +51,14 @@
 </section>
 
 <section>
-	<h3>Commentaires signalés</h3>
-
-	<table>
-		<tr>
-			<th>Id</th>
-			<th>Pseudo</th>
-			<th>Message</th>
-			<th>Date</th>
-			<th>Actions</th>
-		</tr>
-		<?php
-		foreach ($reportedComments as $comment) {
-		?>
-			<tr>
-				<td class="indication"><?= $comment->getId(); ?></td>
-				<td><?= htmlspecialchars($comment->getAuthor()); ?></td>
-				<td><?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?></td>
-				<td>Créé le : <?= $comment->getDate(); ?></td>
-				<td>
-					<a href="index.php?route=unreportComment&commentId=<?= $comment->getId(); ?>">Désignaler</a>
-					<a href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer</a>
-				</td>
-			</tr>
-		<?php
-		}
-		?>
-	</table>
-</section>
-
-<section>
-	<h3>Utilisateurs</h3>
+	<h3 id="users">Utilisateurs</h3>
 
 	<table>
 		<tr>
 			<th>Id</th>
 			<th>Login</th>
 			<th>Pseudo</th>
-			<th>Date</th>
+			<th>Créé le :</th>
 			<th>Rôle</th>
 			<th>Actions</th>
 		</tr>
@@ -98,7 +69,7 @@
 				<td class="indication"><?= htmlspecialchars($user->getId()); ?></td>
 				<td><?= htmlspecialchars($user->getLogin()); ?></td>
 				<td><?= htmlspecialchars($user->getPseudo()); ?></td>
-				<td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
+				<td><?= htmlspecialchars($user->getRegistrationDate()); ?></td>
 				<td><?= htmlspecialchars($user->getRole()); ?></td>
 				<td>
 					<?php
@@ -110,6 +81,67 @@
 					<?php
 					}
 					?>
+				</td>
+			</tr>
+		<?php
+		}
+		?>
+	</table>
+</section>
+
+<section>
+	<h3 id="reportedComments">Commentaires signalés</h3>
+
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Pseudo</th>
+			<th>Message</th>
+			<th>Posté le :</th>
+			<th>Actions</th>
+		</tr>
+		<?php
+		foreach ($reportedComments as $comment) {
+		?>
+			<tr>
+				<td class="indication"><?= $comment->getId(); ?></td>
+				<td><?= htmlspecialchars($comment->getAuthor()); ?></td>
+				<td><?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?></td>
+				<td><?= htmlspecialchars($comment->getDate()); ?></td>
+				<td>
+					<a href="index.php?route=unreportComment&commentId=<?= $comment->getId(); ?>">Désignaler</a>
+					<a href="index.php?route=deleteReportedComment&commentId=<?= $comment->getId(); ?>">Supprimer</a>
+				</td>
+			</tr>
+		<?php
+		}
+		?>
+	</table>
+</section>
+
+<section>
+	<h3 id="comment">Commentaires</h3>
+
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Pseudo</th>
+			<th>Chapitre</th>
+			<th>Message</th>
+			<th>Posté le :</th>
+			<th>Actions</th>
+		</tr>
+		<?php
+		foreach ($comments as $comment) {
+		?>
+			<tr>
+				<td class="indication"><?= $comment->getId(); ?></td>
+				<td><?= htmlspecialchars($comment->getAuthor()); ?></td>
+				<td><?= $comment->getChapterOrder() == 0 ? '' : htmlspecialchars($comment->getChapterOrder()); ?></td>
+				<td><?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?></td>
+				<td><?= htmlspecialchars($comment->getDate()); ?></td>
+				<td>
+					<a href="index.php?route=reportComment&commentId=<?= $comment->getId(); ?>">Signaler</a>
 				</td>
 			</tr>
 		<?php

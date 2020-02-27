@@ -33,11 +33,13 @@ class BackController extends Controller
 			$chapters = $this->chapterDAO->getAllChapters();
 			$reportedComments = $this->commentDAO->getReportedComments();
 			$users = $this->userDAO->getUsers();
+			$comments = $this->commentDAO->getComments();
 			
 			return $this->view->render('administration', [
 				'chapters' => $chapters,
 				'reportedComments' => $reportedComments,
-				'users' => $users
+				'users' => $users,
+				'comments' => $comments
 			]);
 		}
 	}
@@ -108,13 +110,13 @@ class BackController extends Controller
 		}
 	}
 	
-	public function deleteComment($commentId)
+	public function deleteReportedComment($commentId)
 	{
 		if ($this->checkAdmin()) {
 			$this->commentDAO->deleteComment($commentId);
 			$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
 			header('Location: index.php?route=administration');
-		}
+		} 
 	}
 	
 	public function profile()
@@ -124,6 +126,20 @@ class BackController extends Controller
 			return $this->view->render('profile', [
 				'comments' => $commentsUser
 			]);
+		}
+	}
+
+	public function deleteComment($commentId)
+	{
+		if ($this->checkLoggedIn()) {
+			$comment = $this->commentDAO->getComment($commentId);
+			if ($comment->getAuthor() === $this->request->getSession()->get('pseudo')) {
+				$this->commentDAO->deleteComment($commentId);
+				$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
+			} else {
+				$this->session->set('delete_comment', 'Vous ne pouvez supprimer que vos commentaires');
+			}
+			header('Location: index.php?route=profile');
 		}
 	}
 

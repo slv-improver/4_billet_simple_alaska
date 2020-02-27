@@ -10,7 +10,8 @@ body {
 
 [class*="col-"] {
 	background-color: rgb(255, 255, 255);
-	padding: 5px;
+	margin: 10px;
+	padding: 10px;
 	border: 2px solid black;
 	border-radius: 6px;
 	line-height: 30px;
@@ -29,18 +30,31 @@ body {
 #action {
 	float: right;
 }
+
 #home {
 	float: left;
-}
-
-#single > * {
-	height: 75vh;
 }
 
 .indication {
 	font-size: 0.5em;
 }
 
-td {
-	padding: 2px 5px;
+table {
+	background: rgba(224, 250, 255, 0.445);
+}
+
+td, th {
+	padding: 5px 10px;
+	border: 1px outset rgba(0, 0, 139, 0.699);
+}
+
+.btn-primary {
+	padding-bottom: 2px;
+}
+
+@media screen and (min-width: 768px) {
+	#single>* {
+		height: 75vh;
+		overflow: scroll;
+	}
 }

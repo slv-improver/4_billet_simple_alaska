@@ -31,6 +31,16 @@ class Comment
 		$this->chapterName = $chapterName;
 	}
 
+	public function getChapterOrder()
+	{
+		return $this->chapterOrder;
+	}
+
+	public function setChapterOrder($chapterOrder)
+	{
+		$this->chapterOrder = $chapterOrder;
+	}
+
 	public function getAuthor()
 	{
 		return $this->author;

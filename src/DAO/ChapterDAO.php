@@ -66,7 +66,9 @@ class ChapterDAO extends DAO
 
 	public function editChapter(Parameter $post, $chapterId)
 	{
-		$sql = 'UPDATE chapter SET chapter_title=:title, chapter_content=:content, chapter_order=:order, chapter_modified=NOW() WHERE id=:chapterId';
+		$sql = 'UPDATE chapter 
+			SET chapter_title=:title, chapter_content=:content, chapter_order=:order, chapter_modified=NOW() 
+			WHERE id=:chapterId';
 		$this->createQuery($sql, [
 			'title' => $post->get('title'),
 			'content' => $post->get('content'),

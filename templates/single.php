@@ -2,13 +2,13 @@
 
 <?php require_once 'header.php'; ?>
 
-<section id="single" class="row justify-content-between">
-	<article class="col-md-8 col-lg-8 overflow-auto">
+<section id="single" class="row justify-content-md-between justify-content-center">
+	<article class="col-md-8 col-lg-8">
 		<h2><?= htmlspecialchars($chapter->getTitle()); ?></h2>
 		<p><?= $chapter->getContent(); ?></p>
 	</article>
 
-	<aside id="comments" class="col-md-4 col-lg-3 overflow-auto">
+	<aside id="comments" class="col-12 col-sm-8 col-md-4 col-lg-3">
 		<h3>Ajouter un commentaire</h3>
 		<?php
 		if ($this->session->get('login')) {
