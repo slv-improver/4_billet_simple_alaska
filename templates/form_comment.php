@@ -7,6 +7,6 @@ $submit = $route === 'addComment' ? 'Ajouter' : 'Mettre à jour';
 	<p>Pseudo :<br> <?= $this->session->get('pseudo') ?></p>
 	<label for="content">Message</label><br>
 	<?= isset($errors['content']) ? $errors['content'] : ''; ?>
-	<textarea id="content" name="content"><?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?></textarea><br>
-	<input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+	<textarea id="content" name="content"></textarea><br>
+	<input type="submit" value="<?= $submit; ?>" id="submit" name="submit" class="btn btn-secondary">
 </form>

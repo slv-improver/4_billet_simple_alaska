@@ -20,5 +20,5 @@ $content = isset($post) && $post->get('content') ? $post->get('content') : '';
 	<textarea id="chapterArea" name="content" rows="25">
 		<?= $content; ?>
 	</textarea><br>
-	<input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+	<input type="submit" value="<?= $submit; ?>" id="submit" name="submit" class="btn btn-secondary">
 </form>
