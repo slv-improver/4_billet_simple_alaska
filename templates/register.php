@@ -14,6 +14,6 @@
 		<input type="password" id="password" name="password"><br>
 		<?= isset($errors['password']) ? $errors['password'] : ''; ?>
 		<p>J'ai déjà un compte. <a href="index.php?route=login">Me connecter</a></p>
-		<input type="submit" value="Inscription" id="submit" name="submit">
+		<input type="submit" value="Inscription" id="submit" name="submit" class="btn btn-secondary">
 	</form>
 </div>

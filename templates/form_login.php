@@ -5,7 +5,7 @@
 	<label for="password">Mot de passe</label><br>
 	<input type="password" id="password" name="password"><br>
 	<p>Je n'ai pas de compte. <a href="index.php?route=register">M'inscrire</a></p>
-	<input type="submit" value="Connexion" id="submit" name="submit">
+	<input type="submit" value="Connexion" id="submit" name="submit" class="btn btn-secondary">
 
 	<?= $this->session->show('error_login'); ?>
 </form>

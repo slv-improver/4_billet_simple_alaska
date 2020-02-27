@@ -8,7 +8,7 @@
 		<input type="password" id="password" name="password"><br>
 		<?= isset($errors['password']) ? $errors['password'] : ''; ?>
 		<p>Le mot de passe de <?= $this->session->get('pseudo'); ?> sera modifié</p>
-		<input type="submit" value="Mettre à jour" id="submit" name="submit">
+		<input type="submit" value="Mettre à jour" id="submit" name="submit" class="btn btn-secondary">
 	</form>
 </div>
 <br>
