@@ -1,12 +1,11 @@
 <?php
-$route = isset($post) && $post->get('id') ? 'editComment' : 'addComment';
-$submit = $route === 'addComment' ? 'Ajouter' : 'Mettre à jour';
+$content = isset($post) && $post->get('content') ? $post->get('content') : '';
 ?>
 
-<form method="post" action="index.php?route=<?= $route; ?>&chapterId=<?= htmlspecialchars($chapter->getId()); ?>">
-	<p>Pseudo :<br> <?= $this->session->get('pseudo') ?></p>
+<form method="post" action="index.php?route=addComment&chapterId=<?= htmlspecialchars($chapter->getId()) ?>">
+	<p>Pseudo : <span class="pseudo"><?= $this->session->get('pseudo') ?></span></p>
 	<label for="content">Message</label><br>
 	<?= isset($errors['content']) ? $errors['content'] : ''; ?>
-	<textarea id="content" name="content"><?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?></textarea><br>
-	<input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+	<textarea id="content" name="content"><?= $content ?></textarea><br>
+	<input type="submit" value="Ajouter" id="submit" name="submit">
 </form>
