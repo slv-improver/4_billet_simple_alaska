@@ -33,11 +33,13 @@ class BackController extends Controller
 			$chapters = $this->chapterDAO->getAllChapters();
 			$reportedComments = $this->commentDAO->getReportedComments();
 			$users = $this->userDAO->getUsers();
+			$comments = $this->commentDAO->getComments();
 			
 			return $this->view->render('administration', [
 				'chapters' => $chapters,
 				'reportedComments' => $reportedComments,
-				'users' => $users
+				'users' => $users,
+				'comments' => $comments
 			]);
 		}
 	}

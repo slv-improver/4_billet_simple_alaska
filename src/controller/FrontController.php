@@ -48,7 +48,11 @@ class FrontController extends Controller
 	{
 		$this->commentDAO->reportComment($commentId);
 		$this->session->set('report_comment', 'Le commentaire a bien été signalé');
-		header('Location: index.php');
+		if (($this->session->get('role') === 'admin')) {
+			header('Location: index.php?route=administration');
+		} else {
+			header('Location: index.php');
+		}
 	}
 
 	public function register(Parameter $post)
