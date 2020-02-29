@@ -7,5 +7,5 @@ $content = isset($post) && $post->get('content') ? $post->get('content') : '';
 	<label for="content">Message</label><br>
 	<?= isset($errors['content']) ? $errors['content'] : ''; ?>
 	<textarea id="content" name="content"></textarea><br>
-	<input type="submit" value="<?= $submit; ?>" id="submit" name="submit" class="btn btn-secondary">
+	<input type="submit" value="Envoyer" id="submit" name="submit" class="btn btn-secondary">
 </form>
