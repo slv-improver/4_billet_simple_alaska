@@ -33,4 +33,26 @@ abstract class Controller
 		$this->session = $this->request->getSession();
 		$this->validation = new Validation();
 	}
+
+	protected function checkLoggedIn()
+	{
+		if (!$this->session->get('pseudo')) {
+			$this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page');
+			header('Location: index.php?route=login');
+		} else {
+			return true;
+		}
+	}
+
+	protected function checkAdmin()
+	{
+		$this->checkLoggedIn();
+		if (!($this->session->get('role') === 'admin')) {
+			$this->session->set('not_admin', 'Vous n\'avez pas le droit d\'accéder à cette page');
+			header('Location: index.php?route=profile');
+		} else {
+			return true;
+		}
+	}
+
 }
