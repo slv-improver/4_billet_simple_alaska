@@ -3,11 +3,13 @@ body {
 	background: rgba(62, 122, 92, 0.322);
 }
 
+/* 
+bootstrap
+*/
 .container-fluid {
 	padding-right: 50px;
 	padding-left: 50px;
 }
-
 [class*="col-"] {
 	background-color: rgb(255, 255, 255);
 	margin: 10px;
@@ -17,37 +19,42 @@ body {
 	line-height: 30px;
 	text-align: center;
 }
-
-article p {
-	text-align: justify;
+.btn-primary {
+	padding-bottom: 2px;
 }
+/* ********** */
 
-.pseudo {
-	font-weight: bold;
-	font-size: 1.2em;
-}
-
+/* home.php */
 .chapters {
 	height: 72px;
 	overflow: hidden;
 }
 
-.txt-center {
-	text-align: center;
+/* single.php */
+article p {
+	text-align: justify;
 }
 
+/* addComment */
+.pseudo {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+/* header */
 #action {
 	float: right;
 }
-
 #home {
 	float: left;
 }
 
+/* 
+administration
+*/
 .indication {
 	font-size: 0.5em;
 }
-
 table {
 	background: rgba(224, 250, 255, 0.445);
 }
@@ -57,10 +64,8 @@ td, th {
 	border: 1px outset rgba(0, 0, 139, 0.699);
 }
 
-.btn-primary {
-	padding-bottom: 2px;
-}
-
+/* 
+scrollbar style */
 ::-webkit-scrollbar {
 	width: 5px;
 }
@@ -79,6 +84,9 @@ td, th {
 	background: rgb(2, 68, 153);
 }
 
+/* 
+height of chapter section and comment aside
+ */
 @media screen and (min-width: 768px) {
 	#single>* {
 		height: 75vh;

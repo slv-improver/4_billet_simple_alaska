@@ -24,15 +24,23 @@ class UserValidation extends Validation
 
 	private function checkField($name, $value)
 	{
-		if ($name === 'pseudo') {
-			$error = $this->checkPseudo($name, $value);
-			$this->addError($name, $error);
-		} elseif ($name === 'login') {
-			$error = $this->checkLogin($name, $value);
-			$this->addError($name, $error);
-		} elseif ($name === 'password') {
-			$error = $this->checkPassword($name, $value);
-			$this->addError($name, $error);
+		/* check value of input name and call its assigned function */
+		switch ($name) {
+			case 'pseudo':
+				$error = $this->checkPseudo($name, $value);
+				$this->addError($name, $error);
+				break;
+			case 'login':
+				$error = $this->checkLogin($name, $value);
+				$this->addError($name, $error);
+				break;
+			case 'password':
+				$error = $this->checkPassword($name, $value);
+				$this->addError($name, $error);
+				break;
+			
+			default:
+				break;
 		}
 	}
 

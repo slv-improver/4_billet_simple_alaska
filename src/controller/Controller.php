@@ -27,13 +27,14 @@ abstract class Controller
 		$this->commentDAO = new CommentDAO();
 		$this->userDAO = new UserDAO();
 		$this->view = new View();
-		$this->request = new Request();
+		$this->request = new Request(); /* for $_GET, $_POST and $_SESSION */
 		$this->get = $this->request->getGet();
 		$this->post = $this->request->getPost();
 		$this->session = $this->request->getSession();
 		$this->validation = new Validation();
 	}
 
+	/* for actions that require verification */
 	protected function checkLoggedIn()
 	{
 		if (!$this->session->get('pseudo')) {
@@ -54,5 +55,5 @@ abstract class Controller
 			return true;
 		}
 	}
-
+	/* ********* */
 }

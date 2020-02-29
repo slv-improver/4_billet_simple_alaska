@@ -23,6 +23,7 @@ class Session
 		}
 	}
 
+	/* for momentary variable */
 	public function show($name)
 	{
 		if (isset($_SESSION[$name])) {

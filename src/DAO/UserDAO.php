@@ -14,10 +14,14 @@ class UserDAO extends DAO
 		if (isset($row['login'])) {$user->setLogin($row['login']);}
 		if (isset($row['display_name'])) {$user->setPseudo($row['display_name']);}
 		if (isset($row['registration_date'])) {$user->setRegistrationDate($row['registration_date']);}
-		if (isset($row['name'])) {$user->setRole($row['name']);}
+		/* on role table */
+		if (isset($row['name'])) {$user->setRole($row['name']);} 
 		return $user;
 	}
 
+	/* 
+	for administration
+	 */
 	public function getUsers()
 	{
 		$sql = 'SELECT u.id, login, display_name, registration_date, r.name FROM user u JOIN role r ON u.role_id = r.id ORDER BY u.id DESC';
@@ -36,6 +40,31 @@ class UserDAO extends DAO
 		$sql = 'DELETE FROM user WHERE id = ?';
 		$this->createQuery($sql, [$userId]);
 	}
+	/* ********** */
+
+	/* 
+	before registration
+	 */
+	public function checkPseudo(Parameter $post)
+	{
+		$sql_pseudo = 'SELECT COUNT(display_name) FROM user WHERE display_name = ?';
+		$result_pseudo = $this->createQuery($sql_pseudo, [$post->get('pseudo')]);
+		$exists_pseudo = $result_pseudo->fetchColumn();
+		if ($exists_pseudo) {
+			return '<p>Le pseudo existe déjà</p>';
+		}
+	}
+
+	public function checkLogin(Parameter $post)
+	{
+		$sql_login = 'SELECT COUNT(login) FROM user WHERE login = ?';
+		$result_login = $this->createQuery($sql_login, [$post->get('login')]);
+		$exists_login = $result_login->fetchColumn();
+		if ($exists_login) {
+			return '<p>Le login existe déjà</p>';
+		}
+	}
+	/* ********** */
 
 	public function register(Parameter $post)
 	{
@@ -46,25 +75,6 @@ class UserDAO extends DAO
 			password_hash($post->get('password'), PASSWORD_BCRYPT),
 			$post->get('pseudo')
 		]);
-	}
-
-	public function checkPseudo(Parameter $post)
-	{
-		$sql_pseudo = 'SELECT COUNT(display_name) FROM user WHERE display_name = ?';
-		$result_pseudo = $this->createQuery($sql_pseudo, [$post->get('pseudo')]);
-		$exists_pseudo = $result_pseudo->fetchColumn();
-		if ($exists_pseudo) {
-			return '<p>Le pseudo existe déjà</p>';
-		}
-	}
-	public function checkLogin(Parameter $post)
-	{
-		$sql_login = 'SELECT COUNT(login) FROM user WHERE login = ?';
-		$result_login = $this->createQuery($sql_login, [$post->get('login')]);
-		$exists_login = $result_login->fetchColumn();
-		if ($exists_login) {
-			return '<p>Le login existe déjà</p>';
-		}
 	}
 
 	public function login(Parameter $post)
@@ -80,15 +90,19 @@ class UserDAO extends DAO
 		];
 	}
 
+	/* 
+	for profile
+	 */
 	public function updatePassword(Parameter $post, $login)
 	{
 		$sql = 'UPDATE user SET passwd = ? WHERE login = ?';
 		$this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $login]);
 	}
-
+	
 	public function deleteAccount($login)
 	{
 		$sql = 'DELETE FROM user WHERE login = ?';
 		$this->createQuery($sql, [$login]);
 	}
+	/* ********* */
 }

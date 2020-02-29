@@ -16,6 +16,7 @@ class CommentController extends Controller
 				header('Location: index.php');
 			}
 		}
+		/* if errors redirect to single.php with errors */
 		$chapter = $this->chapterDAO->getChapter($chapterId);
 		$comments = $this->commentDAO->getCommentsFromChapter($chapterId);
 		return $this->view->render('single', [
@@ -59,6 +60,7 @@ class CommentController extends Controller
 	{
 		if ($this->checkLoggedIn()) {
 			$comment = $this->commentDAO->getComment($commentId);
+			/* he is the comment owner */
 			if ($comment->getAuthor() === $this->request->getSession()->get('pseudo')) {
 				$this->commentDAO->deleteComment($commentId);
 				$this->session->set('delete_comment', 'Le commentaire a bien été supprimé');

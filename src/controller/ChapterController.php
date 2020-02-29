@@ -14,6 +14,7 @@ class ChapterController extends Controller
 		]);
 	}
 
+	/* for single.php */
 	public function chapter($chapterId)
 	{
 		$chapter = $this->chapterDAO->getChapter($chapterId);
@@ -24,7 +25,7 @@ class ChapterController extends Controller
 		]);
 	}
 
-
+	/* for administration */
 	public function addChapter(Parameter $post)
 	{
 		if ($this->checkAdmin()) {
@@ -35,11 +36,13 @@ class ChapterController extends Controller
 					$this->session->set('add_chapter', 'Le nouveau chapitre a bien été ajouté');
 					header('Location: index.php?route=administration');
 				}
+				/* if errors */
 				return $this->view->render('add_chapter', [
 					'post' => $post,
 					'errors' => $errors
 				]);
 			}
+			/* the first time the function is called */
 			return $this->view->render('add_chapter');
 		}
 	}
@@ -55,12 +58,14 @@ class ChapterController extends Controller
 					$this->session->set('edit_chapter', 'Le chapitre a bien été modifié');
 					header('Location: index.php?route=administration');
 				}
+				/* if errors */
 				return $this->view->render('edit_chapter', [
 					'chapter' => $chapter,
 					'errors' => $errors,
 					'post' => $post
 				]);
 			}
+			/* the first time the function is called */
 			$post->set('id', $chapter->getId());
 			$post->set('title', $chapter->getTitle());
 			$post->set('order', $chapter->getOrder());
@@ -81,4 +86,5 @@ class ChapterController extends Controller
 			header('Location: index.php?route=administration');
 		}
 	}
+	/* ********* */
 }

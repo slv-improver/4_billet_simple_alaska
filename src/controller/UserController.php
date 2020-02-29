@@ -11,9 +11,11 @@ class UserController extends Controller
 		if ($post->get('submit')) {
 			$errors = $this->validation->validate($post, 'User');
 			if ($this->userDAO->checkPseudo($post)) {
+				/* if pseudo in db */
 				$errors['pseudo'] = $this->userDAO->checkPseudo($post);
 			}
 			if ($this->userDAO->checkLogin($post)) {
+				/* if login in db */
 				$errors['login'] = $this->userDAO->checkLogin($post);
 			}
 			if (!$errors) {
@@ -21,11 +23,13 @@ class UserController extends Controller
 				$this->session->set('register', 'Votre inscription a bien été effectuée');
 				header('Location: index.php');
 			}
+			/* if errors */
 			return $this->view->render('register', [
 				'post' => $post,
 				'errors' => $errors
 			]);
 		}
+		/* the first time the function is called */
 		return $this->view->render('register');
 	}
 
@@ -47,6 +51,7 @@ class UserController extends Controller
 				]);
 			}
 		}
+		/* the first time the function is called */
 		return $this->view->render('login');
 	}
 
@@ -92,6 +97,7 @@ class UserController extends Controller
 					'errors' => $errors
 				]);
 			}
+			/* the first time the function is called */
 			return $this->view->render('update_password');
 		}
 	}

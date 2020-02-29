@@ -24,15 +24,23 @@ class ChapterValidation extends Validation
 
 	private function checkField($name, $value)
 	{
-		if ($name === 'title') {
-			$error = $this->checkTitle($name, $value);
-			$this->addError($name, $error);
-		} elseif ($name === 'content') {
-			$error = $this->checkContent($name, $value);
-			$this->addError($name, $error);
-		} elseif ($name === 'order') {
-			$error = $this->checkOrder($name, $value);
-			$this->addError($name, $error);
+		/* check value of input name and call its assigned function */
+		switch ($name) {
+			case 'title':
+				$error = $this->checkTitle($name, $value);
+				$this->addError($name, $error);
+				break;
+			case 'content':
+				$error = $this->checkContent($name, $value);
+				$this->addError($name, $error);
+				break;
+			case 'order':
+				$error = $this->checkOrder($name, $value);
+				$this->addError($name, $error);
+				break;
+			
+			default:
+				break;
 		}
 	}
 
@@ -63,7 +71,7 @@ class ChapterValidation extends Validation
 		if ($this->constraint->notBlank($name, $value)) {
 			return $this->constraint->notBlank('contenu', $value);
 		}
-		// error width tinymce (<p></p>)
+		// error with tinymce (<p></p>)
 		/* if ($this->constraint->minLength($name, $value, 10)) {
 			return $this->constraint->minLength('contenu', $value, 10);
 		} */
