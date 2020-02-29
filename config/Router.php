@@ -1,23 +1,26 @@
 <?php
 
 namespace App\config;
-use App\src\controller\FrontController;
-use App\src\controller\BackController;
+use App\src\controller\ChapterController;
+use App\src\controller\CommentController;
+use App\src\controller\UserController;
 use App\src\controller\ErrorController;
 use Exception;
 
 class Router
 {
-	private $frontController;
-	private $backController;
+	private $chapterController;
+	private $commentController;
+	private $userController;
 	private $errorController;
 	private $request;
 
 	public function __construct()
 	{
 		$this->request = new Request();
-		$this->frontController = new FrontController();
-		$this->backController = new BackController();
+		$this->chapterController = new ChapterController();
+		$this->commentController = new CommentController();
+		$this->userController = new UserController();
 		$this->errorController = new ErrorController();
 	}
 
@@ -28,55 +31,55 @@ class Router
 			if (isset($route)) {
 				switch ($route) {
 					case 'chapter':
-						$this->frontController->chapter($this->request->getGet()->get('chapterId'));
+						$this->chapterController->chapter($this->request->getGet()->get('chapterId'));
 						break;
 					case 'addChapter':
-						$this->backController->addChapter($this->request->getPost());
+						$this->chapterController->addChapter($this->request->getPost());
 						break;
 					case 'editChapter':
-						$this->backController->editChapter($this->request->getPost(), $this->request->getGet()->get('chapterId'));
+						$this->chapterController->editChapter($this->request->getPost(), $this->request->getGet()->get('chapterId'));
 						break;
 					case 'deleteChapter':
-						$this->backController->deleteChapter($this->request->getGet()->get('chapterId'));
+						$this->chapterController->deleteChapter($this->request->getGet()->get('chapterId'));
 						break;
 					case 'addComment':
-						$this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('chapterId'));
+						$this->commentController->addComment($this->request->getPost(), $this->request->getGet()->get('chapterId'));
 						break;
 					case 'reportComment':
-						$this->frontController->reportComment($this->request->getGet()->get('commentId'));
+						$this->commentController->reportComment($this->request->getGet()->get('commentId'));
 						break;
 					case 'unreportComment':
-						$this->backController->unreportComment($this->request->getGet()->get('commentId'));
+						$this->commentController->unreportComment($this->request->getGet()->get('commentId'));
 						break;
 					case 'deleteReportedComment':
-						$this->backController->deleteReportedComment($this->request->getGet()->get('commentId'));
+						$this->commentController->deleteReportedComment($this->request->getGet()->get('commentId'));
 						break;
 					case 'deleteComment':
-						$this->backController->deleteComment($this->request->getGet()->get('commentId'));
+						$this->commentController->deleteComment($this->request->getGet()->get('commentId'));
 						break;
 					case 'register':
-						$this->frontController->register($this->request->getPost());
+						$this->userController->register($this->request->getPost());
 						break;
 					case 'login':
-						$this->frontController->login($this->request->getPost());
+						$this->userController->login($this->request->getPost());
 						break;
 					case 'profile':
-						$this->backController->profile();
+						$this->userController->profile();
 						break;
 					case 'updatePassword':
-						$this->backController->updatePassword($this->request->getPost());
+						$this->userController->updatePassword($this->request->getPost());
 						break;
 					case 'logout':
-						$this->backController->logout();
+						$this->userController->logout();
 						break;
 					case 'deleteAccount':
-						$this->backController->deleteAccount();
+						$this->userController->deleteAccount();
 						break;
 					case 'deleteUser':
-						$this->backController->deleteUser($this->request->getGet()->get('userId'));
+						$this->userController->deleteUser($this->request->getGet()->get('userId'));
 						break;
 					case 'administration':
-						$this->backController->administration();
+						$this->userController->administration();
 						break;
 					
 					default:
@@ -84,7 +87,7 @@ class Router
 						break;
 				}
 			} else {
-				$this->frontController->home();
+				$this->chapterController->home();
 			}
 		} catch (Exception $e) {
 			$this->errorController->errorServer();
