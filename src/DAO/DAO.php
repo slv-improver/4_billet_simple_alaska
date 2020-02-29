@@ -13,7 +13,7 @@ abstract class DAO
 	public function getConnection()
 	{
 		try {
-			$this->connection = new PDO(DB_HOST, DB_USER, DB_PASSWD);
+			$this->connection = new PDO(DB_HOST, DB_USER, DB_PASSWD); /* CONSTANTS defined in config/ */
 			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			return $this->connection;
@@ -21,6 +21,7 @@ abstract class DAO
 			die('Erreur de connection :' . $e->getMessage());
 		}
 	}
+
 
 	private function checkConnection()
 	{
@@ -30,8 +31,9 @@ abstract class DAO
 		return $this->connection;
 	}
 
+	/* prepare and execute sql request if $parameters defined */
 	protected function createQuery($sql, $parameters = null)
-	{
+	{ 
 		if ($parameters) {
 			$result =  $this->checkConnection()->prepare($sql);
 			$result->execute($parameters);

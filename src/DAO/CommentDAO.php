@@ -11,15 +11,18 @@ class CommentDAO extends DAO
 	{
 		$comment = new Comment();
 		if (isset($row['id'])) {$comment->setId($row['id']);}
-		if (isset($row['chapter_title'])) {$comment->setChapterName($row['chapter_title']);}
-		if (isset($row['chapter_order'])) {$comment->setChapterOrder($row['chapter_order']);}
-		if (isset($row['display_name'])) {$comment->setAuthor($row['display_name']);}
 		if (isset($row['comment_content'])) {$comment->setContent($row['comment_content']);}
 		if (isset($row['comment_date'])) {$comment->setDate($row['comment_date']);}
 		if (isset($row['reported'])) {$comment->setReported($row['reported']);}
+		/* on chapter table */
+		if (isset($row['chapter_title'])) {$comment->setChapterName($row['chapter_title']);}
+		if (isset($row['chapter_order'])) {$comment->setChapterOrder($row['chapter_order']);}
+		/* on user table */
+		if (isset($row['display_name'])) {$comment->setAuthor($row['display_name']);} 
 		return $comment;
 	}
 
+	/* for single.php */
 	public function getCommentsFromChapter($chapterId)
 	{
 		$sql = 'SELECT com.id, user_id, display_name, comment_content, comment_date, reported
@@ -33,7 +36,22 @@ class CommentDAO extends DAO
 		$result->closeCursor();
 		return $comments;
 	}
+	
+	public function addComment(Parameter $post, $chapterId, $pseudo)
+	{
+		$sql = 'INSERT INTO comment (user_id, comment_content, comment_date, chapter_id)
+         SELECT id, ?, NOW(), ? FROM user WHERE display_name = ?';
+		$this->createQuery($sql, [$post->get('content'), $chapterId, $pseudo]);
+	}
 
+	public function reportComment($commentId)
+	{
+		$sql = 'UPDATE comment SET reported = 1 WHERE id = ?';
+		$this->createQuery($sql, [$commentId]);
+	}
+	/* ********** */
+
+	/* for profile */
 	public function getCommentsFromUser($userId)
 	{
 		$sql = 'SELECT com.id, com.user_id, chapter_order, comment_content, comment_date, reported
@@ -50,6 +68,20 @@ class CommentDAO extends DAO
 		return $comments;
 	}
 
+	public function getComment($commentId)
+	{
+		$sql = 'SELECT com.id, u.display_name, comment_content 
+			FROM comment com 
+			JOIN user u ON com.user_id = u.id
+			WHERE com.id = :commentId';
+		$result = $this->createQuery($sql, ['commentId' => $commentId]);
+		$comments = $result->fetch();
+		$result->closeCursor();
+		return $this->buildObject($comments);
+	}
+	/* ********** */
+
+	/* for administration */
 	public function getComments()
 	{
 		$sql = 'SELECT com.id, ch.chapter_order, u.display_name, comment_content, comment_date
@@ -65,31 +97,6 @@ class CommentDAO extends DAO
 		}
 		$result->closeCursor();
 		return $comments;
-	}
-
-	public function getComment($commentId)
-	{
-		$sql = 'SELECT com.id, u.display_name, comment_content 
-			FROM comment com 
-			JOIN user u ON com.user_id = u.id
-			WHERE com.id = :commentId';
-		$result = $this->createQuery($sql, ['commentId' => $commentId]);
-		$comments = $result->fetch();
-		$result->closeCursor();
-		return $this->buildObject($comments);
-	}
-
-	public function addComment(Parameter $post, $chapterId, $pseudo)
-	{
-		$sql = 'INSERT INTO comment (user_id, comment_content, comment_date, chapter_id)
-         SELECT id, ?, NOW(), ? FROM user WHERE display_name = ?';
-		$this->createQuery($sql, [$post->get('content'), $chapterId, $pseudo]);
-	}
-
-	public function reportComment($commentId)
-	{
-		$sql = 'UPDATE comment SET reported = 1 WHERE id = ?';
-		$this->createQuery($sql, [$commentId]);
 	}
 
 	public function getReportedComments()
@@ -111,7 +118,9 @@ class CommentDAO extends DAO
 		$sql = 'UPDATE comment SET reported = 0 WHERE id = ?';
 		$this->createQuery($sql, [$commentId]);
 	}
+	/* ********** */
 
+	/* for administration and profile */
 	public function deleteComment($commentId)
 	{
 		$sql = 'DELETE FROM comment WHERE id = ?';

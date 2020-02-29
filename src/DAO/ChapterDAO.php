@@ -13,13 +13,15 @@ class ChapterDAO extends DAO
 		if (isset($row['id'])) {$chapter->setId($row['id']);}
 		if (isset($row['chapter_title'])) {$chapter->setTitle($row['chapter_title']);}
 		if (isset($row['chapter_content'])) {$chapter->setContent($row['chapter_content']);}
-		if (isset($row['display_name'])) {$chapter->setAuthor($row['display_name']);}
 		if (isset($row['chapter_order'])) {$chapter->setOrder($row['chapter_order']);}
 		if (isset($row['chapter_date'])) {$chapter->setDate($row['chapter_date']);}
 		if (isset($row['chapter_modified'])) {$chapter->setDateModif($row['chapter_modified']);}
+		/* on user table */
+		if (isset($row['display_name'])) {$chapter->setAuthor($row['display_name']);}
 		return $chapter;
 	}
 
+	/* for home */
 	public function getChapters()
 	{
 		$sql = 'SELECT ch.id, user_id, display_name, chapter_title, chapter_content, chapter_order, chapter_date, chapter_modified 
@@ -34,6 +36,7 @@ class ChapterDAO extends DAO
 		return $chapters;
 	}
 
+	/* for single */
 	public function getChapter($chapterId)
 	{
 		$sql = 'SELECT ch.id, user_id, display_name, chapter_title, chapter_content, chapter_order, chapter_date, chapter_modified 
@@ -44,6 +47,7 @@ class ChapterDAO extends DAO
 		return $this->buildObject($chapter);
 	}
 
+	/* for administration */
 	public function getAllChapters()
 	{
 		$sql = 'SELECT ch.id, user_id, display_name, chapter_title, chapter_content, chapter_order, chapter_date, chapter_modified
@@ -84,4 +88,5 @@ class ChapterDAO extends DAO
 		$sql = 'DELETE FROM chapter WHERE id=:chapterId';
 		$this->createQuery($sql, ['chapterId' => $chapterId]);
 	}
+	/* ********** */
 }

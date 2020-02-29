@@ -23,6 +23,7 @@ class Parameter
 		$this->parameter[$name] = $value;
 	}
 
+	/* for validation */
 	public function all()
 	{
 		return $this->parameter;

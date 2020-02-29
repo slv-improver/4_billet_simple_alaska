@@ -13,7 +13,7 @@ class View
 
 	public function __construct()
 	{
-		$this->request = new Request();
+		$this->request = new Request(); /* for $_GET, $_POST and $_SESSION */
 		$this->session = $this->request->getSession();
 	}
 

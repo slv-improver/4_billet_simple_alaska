@@ -24,6 +24,7 @@ class CommentValidation extends Validation
 
 	private function checkField($name, $value)
 	{
+		/* check value of input name and call its assigned function */
 		if ($name === 'content') {
 			$error = $this->checkContent($name, $value);
 			$this->addError($name, $error);

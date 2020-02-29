@@ -17,7 +17,7 @@ class Router
 
 	public function __construct()
 	{
-		$this->request = new Request();
+		$this->request = new Request(); /* for $_GET, $_POST and $_SESSION */
 		$this->chapterController = new ChapterController();
 		$this->commentController = new CommentController();
 		$this->userController = new UserController();
@@ -30,6 +30,9 @@ class Router
 		try {
 			if (isset($route)) {
 				switch ($route) {
+					/* 
+					chapterController
+					 */
 					case 'chapter':
 						$this->chapterController->chapter($this->request->getGet()->get('chapterId'));
 						break;
@@ -42,6 +45,9 @@ class Router
 					case 'deleteChapter':
 						$this->chapterController->deleteChapter($this->request->getGet()->get('chapterId'));
 						break;
+					/* 
+					commentController
+					 */
 					case 'addComment':
 						$this->commentController->addComment($this->request->getPost(), $this->request->getGet()->get('chapterId'));
 						break;
@@ -57,6 +63,9 @@ class Router
 					case 'deleteComment':
 						$this->commentController->deleteComment($this->request->getGet()->get('commentId'));
 						break;
+					/* 
+					userController
+					 */
 					case 'register':
 						$this->userController->register($this->request->getPost());
 						break;
@@ -83,13 +92,16 @@ class Router
 						break;
 					
 					default:
+					// if route value is not defined redirect to error_404.php
 						$this->errorController->errorNotFound();
 						break;
 				}
+			// by default
 			} else {
 				$this->chapterController->home();
 			}
 		} catch (Exception $e) {
+			// redirect to error_500.php
 			$this->errorController->errorServer();
 		}
 	}
