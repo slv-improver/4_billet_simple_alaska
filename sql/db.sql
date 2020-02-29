@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `billet_alaska`.`user` (
   CONSTRAINT `fk_user_role1`
     FOREIGN KEY (`role_id`)
     REFERENCES `billet_alaska`.`role` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `billet_alaska`.`chapter` (
   CONSTRAINT `fk_chapter_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `billet_alaska`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -94,13 +94,13 @@ CREATE TABLE IF NOT EXISTS `billet_alaska`.`comment` (
   CONSTRAINT `fk_comment_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `billet_alaska`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_comment_chapter1`
     FOREIGN KEY (`chapter_id`)
     REFERENCES `billet_alaska`.`chapter` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
